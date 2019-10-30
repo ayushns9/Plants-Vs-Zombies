@@ -1,8 +1,10 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,18 +12,19 @@ import java.util.Random;
 
 
 public class Zombies {
-
+    private static int idCreater = 1;
     private final int x = 600;
-    private int y;
+    private int y, id ;
     private Random rand = new Random();
     private int possibleLocations[] = {115,50,10,-40,-90};
     Zombies(Pane pane) throws FileNotFoundException {
+        this.id = idCreater;
+        ++idCreater;
         Image image = new Image(new FileInputStream("./src/images/zom.gif"));
         ImageView imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
         int y = rand.nextInt(5);
-        System.out.println(y);
         imageView.setTranslateY(possibleLocations[y]);
         imageView.setFitHeight(70);
         imageView.setFitWidth(70);
@@ -29,6 +32,14 @@ public class Zombies {
     }
 
     void move(Pane pane){
-        pane.getChildren().get(1).setTranslateX(pane.getChildren().get(1).getTranslateX()-70);
+        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX()-70);
+        TranslateTransition t = new TranslateTransition();
+        t.setDuration(Duration.millis(60000));
+        t.setNode(pane.getChildren().get(this.id));
+        t.setByX(-1000);
+        t.setCycleCount(50);
+        t.setAutoReverse(false);
+        t.play();
     }
+
 }
