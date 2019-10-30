@@ -12,14 +12,14 @@ import java.util.Random;
 
 
 public class Zombies {
-    private static int idCreater = 1;
+
     private final int x = 600;
     private int y, id ;
     private Random rand = new Random();
     private int possibleLocations[] = {115,50,10,-40,-90};
     Zombies(Pane pane) throws FileNotFoundException {
-        this.id = idCreater;
-        ++idCreater;
+        this.id = Main.idCreater;
+        ++Main.idCreater;
         Image image = new Image(new FileInputStream("./src/images/zom.gif"));
         ImageView imageView = new ImageView(image);
         pane.getChildren().add(imageView);
