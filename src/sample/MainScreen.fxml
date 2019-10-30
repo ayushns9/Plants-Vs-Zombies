@@ -16,14 +16,16 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="328.0" prefWidth="594.0">
+      <AnchorPane prefHeight="239.0" prefWidth="766.0">
          <children>
-            <ImageView fitHeight="333.0" fitWidth="938.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="333.0" fitWidth="938.0" layoutX="-14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/plants-vs.-zombies-hd-wallpapers-33506-9044287.png" />
                </image>
             </ImageView>
-            <Button layoutX="320.0" layoutY="126.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="Button" />
+            <Button layoutX="320.0" layoutY="126.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="New Game" />
+            <Button layoutX="337.0" layoutY="174.0" mnemonicParsing="false" text="Resume" />
+            <Button layoutX="348.0" layoutY="218.0" mnemonicParsing="false" text="Exit" />
          </children></AnchorPane>
    </children>
 </GridPane>
