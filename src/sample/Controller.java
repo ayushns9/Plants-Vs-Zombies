@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -20,5 +19,10 @@ public class Controller {
         Main.window.setScene(scene);
         Main.window.show();
         Zombies z = new Zombies(pane);
+    }
+
+    public void dragPeaShooter(ActionEvent event) throws IOException {
+        //create peaShooter on current pointer location.
+
     }
 }
