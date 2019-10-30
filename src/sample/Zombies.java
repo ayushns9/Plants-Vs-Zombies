@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 
 
-public class Zombies {
+public class Zombies extends Character {
     private static int idCreater = 1;
     private final int x = 600;
     private int y, id ;

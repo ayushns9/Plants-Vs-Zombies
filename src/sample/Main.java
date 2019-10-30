@@ -33,6 +33,7 @@ public class Main extends Application {
         window.setScene(scene);
         window.show();
         Zombies z = new Zombies(pane);
+        PeaShooter p = new PeaShooter(pane,300,20);
         z.move(pane);
     }
 
