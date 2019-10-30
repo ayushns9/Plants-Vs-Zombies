@@ -19,17 +19,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void changeScene(String fxml, ActionEvent event) throws IOException {
-        Pane pane = FXMLLoader.load(Main.class.getResource(fxml));
-        Scene scene = new Scene(pane);
-        window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-        Zombies z = new Zombies(pane);
-        PeaShooter p = new PeaShooter(pane,300,20);
-        z.move(pane);
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
