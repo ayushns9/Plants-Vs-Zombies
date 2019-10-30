@@ -5,14 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Controller {
 
     public void newGameButtonPushed(ActionEvent event) throws IOException {
-        Main.changeScene("GameScreen.fxml", event);
+        Pane pane = FXMLLoader.load(getClass().getResource("GameScreen.fxml"));
+        Scene scene = new Scene(pane);
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+        Zombies z = new Zombies(pane);
     }
 }

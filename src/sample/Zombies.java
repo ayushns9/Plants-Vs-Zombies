@@ -29,9 +29,6 @@ public class Zombies {
         imageView.setFitHeight(70);
         imageView.setFitWidth(70);
         imageView.setPreserveRatio(true);
-    }
-
-    void move(Pane pane){
         pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX()-70);
         TranslateTransition t = new TranslateTransition();
         t.setDuration(Duration.millis(60000));
