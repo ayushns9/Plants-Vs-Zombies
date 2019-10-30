@@ -33,6 +33,7 @@ public class Main extends Application {
         window.setScene(scene);
         window.show();
         Zombies z = new Zombies(pane);
+        z.move(pane);
     }
 
     public static void main(String[] args) {
