@@ -27,7 +27,6 @@ public class Controller{
         Zombies z = new Zombies(Main.getRoot());
         SunToken k = new SunToken(Main.getRoot(),190,0);
         LawnMover l = new LawnMover(Main.getRoot(),50,100);
-        GroundNut g = new GroundNut(Main.getRoot(),200,100);
     }
     public void Enterinfo(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
@@ -97,6 +96,10 @@ public class Controller{
         if(sunFlower) {
             SunFlower p = new SunFlower(Main.getRoot(), (int)x-30, (int)y- 160);
             sunFlower = false;
+        }
+        if(groundnut) {
+            GroundNut p = new GroundNut(Main.getRoot(), (int)x-30, (int)y- 160);
+            groundnut = false;
         }
     }
 }

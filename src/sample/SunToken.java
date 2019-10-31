@@ -25,13 +25,6 @@ public class SunToken extends Character {
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
 
-        TranslateTransition t = new TranslateTransition();
-        t.setDuration(Duration.seconds(3));
-        t.setNode(pane.getChildren().get(this.id));
-        t.setByX(560);
-        t.setCycleCount(50);
-        t.setAutoReverse(false);
-        t.play();
 
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
