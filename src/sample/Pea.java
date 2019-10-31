@@ -30,7 +30,7 @@ public class Pea extends Character {
 //        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX());
         TranslateTransition t = new TranslateTransition();
         t.setDuration(Duration.seconds(3));
-        t.setNode(pane.getChildren().get(this.id));
+        t.setNode(imageView);
         t.setByX(560);
         t.setCycleCount(50);
         t.setAutoReverse(false);
