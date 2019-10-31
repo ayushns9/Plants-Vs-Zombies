@@ -14,13 +14,13 @@ public class Controller{
     public boolean peaShooter = false;
 
     public void newGameButtonPushed(ActionEvent event) throws IOException {
-        Main.root = FXMLLoader.load(getClass().getResource("GameScreen.fxml"));
-        Scene scene = new Scene(Main.root);
+        Main.setRoot(FXMLLoader.load(getClass().getResource("GameScreen.fxml"))) ;
+        Scene scene = new Scene(Main.getRoot());
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
-        Zombies z = new Zombies(Main.root);
-        Pea k = new Pea(Main.root);
+        Zombies z = new Zombies(Main.getRoot());
+
     }
 
     public void dragPeaShooter(MouseEvent event) {
@@ -54,7 +54,7 @@ public class Controller{
             return;
         }
         if(peaShooter) {
-            PeaShooter p = new PeaShooter(Main.root, (int)x-30, (int)y- 160);
+            PeaShooter p = new PeaShooter(Main.getRoot(), (int)x-30, (int)y- 160);
             peaShooter = false;
         }
     }

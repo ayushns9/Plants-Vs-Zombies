@@ -10,7 +10,15 @@ public class Main extends Application {
 
     public static int idCreater = 1;
     public static Stage window;
-    public static Pane root;
+    private static Pane root;
+
+    public static Pane getRoot() {
+        return root;
+    }
+
+    public static void setRoot(Pane root) {
+        Main.root = root;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
