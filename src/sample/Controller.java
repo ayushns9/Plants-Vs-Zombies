@@ -35,6 +35,22 @@ public class Controller{
         Main.window.show();
 
     }
+    public void level(ActionEvent event) throws IOException {
+        Main.setRoot(FXMLLoader.load(getClass().getResource("choose.fxml"))) ;
+        Scene scene = new Scene(Main.getRoot());
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+
+    }
+    public void Pause(MouseEvent event) throws IOException {
+        Main.setRoot(FXMLLoader.load(getClass().getResource("Pause.fxml"))) ;
+        Scene scene = new Scene(Main.getRoot());
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+
+    }
     public void Load(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("Load.fxml"))) ;
         Scene scene = new Scene(Main.getRoot());

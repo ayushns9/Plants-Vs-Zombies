@@ -31,10 +31,10 @@ public class Zombies {
         imageView.setFitHeight(70);
         imageView.setFitWidth(70);
         imageView.setPreserveRatio(true);
-        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX()-70);
+//        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX()-70);
         TranslateTransition t = new TranslateTransition();
-        t.setDuration(Duration.millis(60000));
-        t.setNode(pane.getChildren().get(this.id));
+        t.setDuration(Duration.millis(20000));
+        t.setNode(imageView);
         t.setByX(-400);
         t.setCycleCount(50);
         t.setAutoReverse(false);

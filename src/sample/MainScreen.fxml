@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" prefHeight="320.0" prefWidth="594.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="287.0" prefWidth="762.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -16,16 +16,17 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="239.0" prefWidth="766.0">
+      <AnchorPane prefHeight="195.0" prefWidth="762.0">
          <children>
-            <ImageView fitHeight="333.0" fitWidth="938.0" layoutX="-14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="347.0" fitWidth="778.0" layoutX="-14.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/plants-vs.-zombies-hd-wallpapers-33506-9044287.png" />
                </image>
             </ImageView>
-            <Button layoutX="320.0" layoutY="126.0" mnemonicParsing="false" onAction="#Enterinfo" prefHeight="26.0" prefWidth="86.0" text="New Game" />
+            <Button layoutX="323.0" layoutY="127.0" mnemonicParsing="false" onAction="#Enterinfo" prefHeight="26.0" prefWidth="86.0" text="New Game" />
             <Button layoutX="337.0" layoutY="174.0" mnemonicParsing="false" onAction="#Load" text="Resume" />
-            <Button layoutX="348.0" layoutY="218.0" mnemonicParsing="false" onAction="#gameExit" text="Exit" />
+            <Button layoutX="348.0" layoutY="261.0" mnemonicParsing="false" onAction="#gameExit" text="Exit" />
+            <Button layoutX="342.0" layoutY="218.0" mnemonicParsing="false" onAction="#level" text="Levels" />
          </children></AnchorPane>
    </children>
 </GridPane>
