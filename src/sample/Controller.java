@@ -27,6 +27,7 @@ public class Controller{
         Zombies z = new Zombies(Main.getRoot());
         SunToken k = new SunToken(Main.getRoot(),190,0);
         LawnMover l = new LawnMover(Main.getRoot(),50,100);
+        GroundNut g = new GroundNut(Main.getRoot(),200,100);
     }
     public void Enterinfo(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
