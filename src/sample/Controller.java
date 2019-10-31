@@ -22,6 +22,7 @@ public class Controller{
         Zombies z = new Zombies(Main.getRoot());
         SunFlower s = new SunFlower(Main.getRoot(),150,0);
         SunToken k = new SunToken(Main.getRoot(),190,0);
+        LawnMover l = new LawnMover(Main.getRoot(),50,100);
 
     }
 

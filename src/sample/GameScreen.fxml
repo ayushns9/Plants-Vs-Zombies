@@ -22,19 +22,19 @@
                   <Image url="@../images/Background1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="91.0" fitWidth="90.0" onMouseClicked="#dragPeaShooter" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="65.0" onMouseClicked="#dragPeaShooter" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/maxresdefault.jpg" />
+                  <Image url="@../images/pea-shooter-button.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="51.0" fitWidth="90.0" layoutY="51.0" pickOnBounds="true">
+            <ImageView fitHeight="51.0" fitWidth="36.0" layoutY="49.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/Background1.png" />
+                  <Image url="@../images/sunflower-button.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="90.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="58.0" fitWidth="36.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pvzb.jpeg" />
+                  <Image url="@../images/wallnut-button.jpg" />
                </image>
             </ImageView>
          </children></AnchorPane>
