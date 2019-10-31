@@ -16,8 +16,8 @@ public abstract class Plants extends Character {
     protected Random rand = new Random();
     private int possibleLocations[] = {115,50,10,-40,-90};
     Plants(Pane pane) throws FileNotFoundException {
-        this.id = idCreater;
-        ++idCreater;
+        this.id = Main.idCreater;
+        ++Main.idCreater;
 
     }
 

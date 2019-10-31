@@ -19,20 +19,20 @@ public class Pea extends Character {
     Pea(Pane pane) throws FileNotFoundException {
         this.id = Main.idCreater;
         ++Main.idCreater;
-        Image image = new Image(new FileInputStream("./src/images/zom.gif"));
+        Image image = new Image(new FileInputStream("./src/images/pea.png"));
         ImageView imageView = new ImageView(image);
         pane.getChildren().add(imageView);
-        imageView.setTranslateX(x);
+        imageView.setTranslateX(0);
         int y = rand.nextInt(5);
-        imageView.setTranslateY(possibleLocations[y]);
-        imageView.setFitHeight(70);
-        imageView.setFitWidth(70);
+        imageView.setTranslateY(0);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
         imageView.setPreserveRatio(true);
-        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX()-70);
+        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX());
         TranslateTransition t = new TranslateTransition();
         t.setDuration(Duration.millis(60000));
         t.setNode(pane.getChildren().get(this.id));
-        t.setByX(-1000);
+        t.setByX(46000);
         t.setCycleCount(50);
         t.setAutoReverse(false);
         t.play();

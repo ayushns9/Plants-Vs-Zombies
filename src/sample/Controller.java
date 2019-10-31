@@ -19,8 +19,10 @@ public class Controller {
         Main.window.setScene(scene);
         Main.window.show();
         Zombies z = new Zombies(pane);
+
         PeaShooter p = new PeaShooter(pane,0,0);
         Pea k = new Pea(pane);
+
     }
 
     public void dragPeaShooter(ActionEvent event) throws IOException {
