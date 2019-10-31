@@ -32,6 +32,12 @@ public class Controller{
         newpane.getChildren().add(t);
         Main.setRoot(newpane);
 
+        LawnMover l = new LawnMover(Main.getRoot(),55,112);
+        l.move();
+        LawnMover l1 = new LawnMover(Main.getRoot(),55,62);
+        LawnMover l2 = new LawnMover(Main.getRoot(),55,12);
+        LawnMover l3 = new LawnMover(Main.getRoot(),55,-42);
+        LawnMover l4 = new LawnMover(Main.getRoot(),55,-92);
     }
     public void Enterinfo(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;

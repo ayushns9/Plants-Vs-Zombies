@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 
 public class LawnMover extends Character {
     private int id ;
+    ImageView lm;
 
     LawnMover(Pane pane, int x, int y) throws FileNotFoundException {
         this.id = Main.idCreater;
@@ -23,10 +24,14 @@ public class LawnMover extends Character {
         imageView.setFitHeight(40);
         imageView.setFitWidth(40);
         imageView.setPreserveRatio(true);
+        this.lm=imageView;
 //        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX());
+
+    }
+    void move(){
         TranslateTransition t = new TranslateTransition();
         t.setDuration(Duration.seconds(3));
-        t.setNode(imageView);
+        t.setNode(this.lm);
         t.setByX(560);
         t.setCycleCount(50);
         t.setAutoReverse(false);
