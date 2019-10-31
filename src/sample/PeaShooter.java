@@ -10,13 +10,13 @@ import java.io.FileNotFoundException;
 public class PeaShooter extends Plants {
     PeaShooter(Pane pane,int x,int y) throws FileNotFoundException {
         super(pane);
-        this.imageLoc="./src/images/zom.gif";
+        this.imageLoc="./src/images/Peashooter.gif";
         Image image = new Image(new FileInputStream(imageLoc));
         ImageView imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
-        imageView.setFitHeight(70);
-        imageView.setFitWidth(70);
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
     }
 }
