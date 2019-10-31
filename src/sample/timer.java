@@ -2,7 +2,6 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -14,33 +13,33 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 public class timer {
-    public Timeline animation;
-    public int tmp = 0;
-    public String S = "";
 
-    Label label = new Label("00");
+    private Timeline timePlay;
+    private int tmp = 0;
+    private String S;
+
+    Label timerLabel = new Label("00");
 
     public timer(){
-        label.setFont(new Font("Arial",30));
-        label.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-        label.setTranslateX(5);
-        label.setTranslateY(68);
-        System.out.println(label.getTranslateX());
+
+        timerLabel.setFont(new Font("Arial",30));
+        timerLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        timerLabel.setTranslateY((double)68);
 
         Pane newRoot = Main.getRoot();
-        newRoot.getChildren().add(label);
+        newRoot.getChildren().add(timerLabel);
         Main.setRoot(newRoot);
 
-        animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> timelabel()));
-        animation.setCycleCount((Timeline.INDEFINITE));
-        animation.play();
+        timePlay = new Timeline(new KeyFrame(Duration.millis((double)1000), e -> incrementTimer()));
+        timePlay.setCycleCount((Timeline.INDEFINITE));
+        timePlay.play();
     }
 
-    private void timelabel() {
-        if(tmp < 1000){
+    private void incrementTimer() {
+        if(tmp < 10000000){
             tmp++;
         }
-        S = tmp + "";
-        label.setText(S);
+        S = Integer.toString(tmp);
+        timerLabel.setText(S);
     }
 }

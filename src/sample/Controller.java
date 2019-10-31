@@ -26,8 +26,6 @@ public class Controller{
         Main.window.setScene(scene);
         Main.window.show();
         Zombies z = new Zombies(Main.getRoot());
-//        LawnMover l = new LawnMover(Main.getRoot(),50,100);
-
 
         LawnMover l = new LawnMover(Main.getRoot(),55,112);
         l.move();
@@ -37,9 +35,6 @@ public class Controller{
         LawnMover l4 = new LawnMover(Main.getRoot(),55,-92);
 
         timer tim = new timer();
-//        Pane newp = Main.getRoot();
-//        newp.getChildren().add();
-//        Main.setRoot(newp);
 
     }
     public void Enterinfo(ActionEvent event) throws IOException {
