@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="330.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pback.jpg" />
+         </image>
+      </ImageView>
+      <TextField layoutX="65.0" layoutY="84.0" promptText="Enter Name" />
+      <Button layoutX="141.0" layoutY="150.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+      <Button layoutX="65.0" layoutY="150.0" mnemonicParsing="false" onAction="#newGameButtonPushed" text="Play" />
+   </children>
+</AnchorPane>

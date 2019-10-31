@@ -30,6 +30,22 @@ public class Controller{
         LawnMover l = new LawnMover(Main.getRoot(),50,100);
 
     }
+    public void Enterinfo(ActionEvent event) throws IOException {
+        Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
+        Scene scene = new Scene(Main.getRoot());
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+
+    }
+    public void Back(ActionEvent event) throws IOException {
+        Main.setRoot(FXMLLoader.load(getClass().getResource("MainScreen.fxml"))) ;
+        Scene scene = new Scene(Main.getRoot());
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+
+    }
 
     public void dragPeaShooter(MouseEvent event) {
         System.out.println("onDragDetected");
