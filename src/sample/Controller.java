@@ -25,7 +25,6 @@ public class Controller{
         Main.window.setScene(scene);
         Main.window.show();
         Zombies z = new Zombies(Main.getRoot());
-        SunToken k = new SunToken(Main.getRoot(),190,0);
         LawnMover l = new LawnMover(Main.getRoot(),50,100);
     }
     public void Enterinfo(ActionEvent event) throws IOException {
