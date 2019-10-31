@@ -36,7 +36,14 @@ public class Controller{
         Main.window.show();
 
     }
-    public void Back(ActionEvent event) throws IOException {
+    public void Load(ActionEvent event) throws IOException {
+        Main.setRoot(FXMLLoader.load(getClass().getResource("Load.fxml"))) ;
+        Scene scene = new Scene(Main.getRoot());
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+
+    }    public void Back(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("MainScreen.fxml"))) ;
         Scene scene = new Scene(Main.getRoot());
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
