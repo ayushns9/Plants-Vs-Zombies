@@ -1,10 +1,16 @@
 package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 public class timer {
@@ -15,9 +21,10 @@ public class timer {
     Label label = new Label("00");
 
     public timer(){
-        label.setPrefWidth(40);
-        label.setTranslateX(600);
-        label.setTranslateY(-150);
+        label.setFont(new Font("Arial",30));
+        label.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        label.setTranslateX(5);
+        label.setTranslateY(68);
         System.out.println(label.getTranslateX());
 
         Pane newRoot = Main.getRoot();
