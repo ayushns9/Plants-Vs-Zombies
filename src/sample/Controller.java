@@ -11,13 +11,13 @@ import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+
 public class Controller{
     private boolean peaShooter = false,sunFlower = false, groundnut = false;
 
     public void gameExit(ActionEvent event)throws IOException{
         System.exit(0);
     }
-
 
     public void newGameButtonPushed(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("GameScreen.fxml"))) ;
@@ -27,10 +27,7 @@ public class Controller{
         Main.window.show();
         Zombies z = new Zombies(Main.getRoot());
 //        LawnMover l = new LawnMover(Main.getRoot(),50,100);
-        sample.timer t = new timer();
-        Pane newpane = Main.getRoot();
-        newpane.getChildren().add(t);
-        Main.setRoot(newpane);
+
 
         LawnMover l = new LawnMover(Main.getRoot(),55,112);
         l.move();
@@ -39,10 +36,11 @@ public class Controller{
         LawnMover l3 = new LawnMover(Main.getRoot(),55,-42);
         LawnMover l4 = new LawnMover(Main.getRoot(),55,-92);
 
-        sample.timer tim = new timer();
-        Pane newp = Main.getRoot();
-        newp.getChildren().add(tim);
-        Main.setRoot(newp);
+        timer tim = new timer();
+//        Pane newp = Main.getRoot();
+//        newp.getChildren().add();
+//        Main.setRoot(newp);
+
     }
     public void Enterinfo(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
