@@ -10,10 +10,11 @@ public class Main extends Application {
 
     public static int idCreater = 1;
     public static Stage window;
+    public static Pane root;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Pane root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene scene  = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

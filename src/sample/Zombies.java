@@ -17,6 +17,7 @@ public class Zombies {
     private int y, id ;
     private Random rand = new Random();
     private int possibleLocations[] = {115,50,10,-40,-90};
+
     Zombies(Pane pane) throws FileNotFoundException {
         this.id = Main.idCreater;
         ++Main.idCreater;
@@ -33,7 +34,7 @@ public class Zombies {
         TranslateTransition t = new TranslateTransition();
         t.setDuration(Duration.millis(60000));
         t.setNode(pane.getChildren().get(this.id));
-        t.setByX(-1000);
+        t.setByX(-400);
         t.setCycleCount(50);
         t.setAutoReverse(false);
         t.play();
