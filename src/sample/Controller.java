@@ -20,6 +20,8 @@ public class Controller{
         Main.window.setScene(scene);
         Main.window.show();
         Zombies z = new Zombies(Main.getRoot());
+        SunFlower s = new SunFlower(Main.getRoot(),150,0);
+        SunToken k = new SunToken(Main.getRoot(),190,0);
 
     }
 
