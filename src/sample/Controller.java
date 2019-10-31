@@ -13,6 +13,11 @@ import java.io.IOException;
 public class Controller{
     public boolean peaShooter = false;
 
+    public void gameExit(ActionEvent event)throws IOException{
+        System.exit(0);
+    }
+
+
     public void newGameButtonPushed(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("GameScreen.fxml"))) ;
         Scene scene = new Scene(Main.getRoot());

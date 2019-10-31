@@ -25,7 +25,7 @@
             </ImageView>
             <Button layoutX="320.0" layoutY="126.0" mnemonicParsing="false" onAction="#newGameButtonPushed" prefHeight="26.0" prefWidth="86.0" text="New Game" />
             <Button layoutX="337.0" layoutY="174.0" mnemonicParsing="false" text="Resume" />
-            <Button layoutX="348.0" layoutY="218.0" mnemonicParsing="false" text="Exit" />
+            <Button layoutX="348.0" layoutY="218.0" mnemonicParsing="false" onAction="#gameExit" text="Exit" />
          </children></AnchorPane>
    </children>
 </GridPane>
