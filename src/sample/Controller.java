@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -26,6 +27,11 @@ public class Controller{
         Main.window.show();
         Zombies z = new Zombies(Main.getRoot());
         LawnMover l = new LawnMover(Main.getRoot(),50,100);
+        sample.timer t = new timer();
+        Pane newpane = Main.getRoot();
+        newpane.getChildren().add(t);
+        Main.setRoot(newpane);
+
     }
     public void Enterinfo(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
