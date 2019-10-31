@@ -17,7 +17,8 @@ public class SunFlower extends Plants {
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
+        imageView.setFitHeight(60);
+        imageView.setFitWidth(60);
+        SunToken st = new SunToken(Main.getRoot(),x,y);
     }
 }

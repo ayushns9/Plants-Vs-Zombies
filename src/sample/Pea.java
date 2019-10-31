@@ -1,14 +1,15 @@
 package sample;
 
 import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Random;
 
 public class Pea extends Character {
 
@@ -33,5 +34,6 @@ public class Pea extends Character {
         t.setCycleCount(50);
         t.setAutoReverse(false);
         t.play();
+
     }
 }

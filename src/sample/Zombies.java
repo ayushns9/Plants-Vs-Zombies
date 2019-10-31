@@ -15,6 +15,7 @@ public class Zombies {
 
     private final int x = 600;
     private int y, id ;
+
     private Random rand = new Random();
     private int possibleLocations[] = {115,50,10,-40,-90};
 

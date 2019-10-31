@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Controller{
-    public boolean peaShooter = false;
+    private boolean peaShooter = false,sunFlower = false;
 
     public void gameExit(ActionEvent event)throws IOException{
         System.exit(0);
@@ -25,10 +25,8 @@ public class Controller{
         Main.window.setScene(scene);
         Main.window.show();
         Zombies z = new Zombies(Main.getRoot());
-        SunFlower s = new SunFlower(Main.getRoot(),150,0);
         SunToken k = new SunToken(Main.getRoot(),190,0);
         LawnMover l = new LawnMover(Main.getRoot(),50,100);
-
     }
     public void Enterinfo(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
@@ -48,8 +46,14 @@ public class Controller{
     }
 
     public void dragPeaShooter(MouseEvent event) {
-        System.out.println("onDragDetected");
+        System.out.println("peashooter clicked");
         peaShooter = true;
+        sunFlower = false;
+    }
+    public void dragSunFlower(MouseEvent event) {
+        System.out.println("sunflower clicked");
+        sunFlower = true;
+        peaShooter =false;
     }
     public void drop(MouseEvent event) throws FileNotFoundException {
         System.out.println("Drop");
@@ -80,6 +84,10 @@ public class Controller{
         if(peaShooter) {
             PeaShooter p = new PeaShooter(Main.getRoot(), (int)x-30, (int)y- 160);
             peaShooter = false;
+        }
+        if(sunFlower) {
+            SunFlower p = new SunFlower(Main.getRoot(), (int)x-30, (int)y- 160);
+            sunFlower = false;
         }
     }
 }
