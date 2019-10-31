@@ -18,6 +18,5 @@ public class GroundNut extends Plants {
         imageView.setTranslateY(y);
         imageView.setFitHeight(40);
         imageView.setFitWidth(40);
-        SunToken st = new SunToken(Main.getRoot(),x,y);
     }
 }
