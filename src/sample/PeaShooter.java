@@ -16,8 +16,8 @@ public class PeaShooter extends Plants {
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
-        imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
+        imageView.setFitHeight(45);
+        imageView.setFitWidth(45);
         Pea k = new Pea(Main.getRoot(),x,y);
     }
 }

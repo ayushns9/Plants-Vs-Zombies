@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Controller{
-    private boolean peaShooter = false,sunFlower = false;
+    private boolean peaShooter = false,sunFlower = false, groundnut = false;
 
     public void gameExit(ActionEvent event)throws IOException{
         System.exit(0);
@@ -50,10 +50,18 @@ public class Controller{
         System.out.println("peashooter clicked");
         peaShooter = true;
         sunFlower = false;
+        groundnut = false;
     }
     public void dragSunFlower(MouseEvent event) {
         System.out.println("sunflower clicked");
         sunFlower = true;
+        peaShooter =false;
+        groundnut = false;
+    }
+    public void dragGroundNut(MouseEvent event) {
+        System.out.println("Groundnut clicked");
+        groundnut = true;
+        sunFlower = false;
         peaShooter =false;
     }
     public void drop(MouseEvent event) throws FileNotFoundException {
