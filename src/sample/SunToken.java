@@ -33,6 +33,7 @@ public class SunToken extends Character {
                 newPane.getChildren().remove(imageView);
                 Main.setRoot(newPane);
                 collected = true;
+                Controller.update_money();
             }
         });
     }

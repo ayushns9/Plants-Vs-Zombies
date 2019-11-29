@@ -21,6 +21,7 @@ public class Controller{
     private boolean peaShooter = false,sunFlower = false, groundnut = false;
     private FXMLLoader curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
     static int curr_money;
+    static Text border;
     public void gameExit(ActionEvent event)throws IOException{
         System.exit(0);
     }
@@ -44,7 +45,7 @@ public class Controller{
         Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)7000), e -> {
             try {
                 Map<String, Object> fxmlNamespace = curr_load.getNamespace();
-                Text border = (Text) fxmlNamespace.get("money");
+                border = (Text) fxmlNamespace.get("money");
                 Controller.curr_money = Integer.parseInt(border.getText());
                 System.out.println(Controller.curr_money);
 
@@ -97,6 +98,11 @@ public class Controller{
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
+
+    }
+    public static void update_money(){
+        Controller.curr_money+=20;
+        Controller.border.setText(Integer.toString(curr_money));
 
     }
 
