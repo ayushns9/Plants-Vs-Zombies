@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 
 
-public class Zombies {
+public class Zombies extends Character {
 
     private final int x = 600;
     private int y, id ;
@@ -39,6 +39,9 @@ public class Zombies {
         t.setCycleCount(50);
         t.setAutoReverse(false);
         t.play();
+    }
+    static void spawn() throws FileNotFoundException{
+        new Zombies(Main.getRoot());
     }
 
 }

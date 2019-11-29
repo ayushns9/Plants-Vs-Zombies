@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,12 +40,12 @@
                   <Image url="@../images/wallnut-button.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="59.0" fitWidth="70.0" layoutX="-6.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="59.0" fitWidth="70.0" layoutX="-8.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/sun.png" />
                </image>
             </ImageView>
-            <Text fontSmoothingType="LCD" layoutX="16.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200">
+            <Text fx:id="money" fontSmoothingType="LCD" layoutX="14.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200">
                <font>
                   <Font size="9.0" />
                </font>
@@ -54,6 +55,7 @@
                   <Image url="@../images/pause.png" />
                </image>
             </ImageView>
+            <ProgressBar layoutX="245.0" layoutY="4.0" prefWidth="200.0" progress="0.24" />
          </children></AnchorPane>
     </children>
 </GridPane>

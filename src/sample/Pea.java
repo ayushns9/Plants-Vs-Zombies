@@ -32,7 +32,7 @@ public class Pea extends Character {
         t.setDuration(Duration.seconds(3));
         t.setNode(imageView);
         t.setByX(560);
-        t.setCycleCount(50);
+        t.setCycleCount(100);
         t.setAutoReverse(false);
         t.play();
 
