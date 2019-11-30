@@ -51,7 +51,13 @@ public class LawnMover extends Character {
             for (Zombies z : Zombies.getAllZombies()) {
                 if (Math.abs(z.getX() - this.x) < 10 && Math.abs(z.getY() - this.y) < 10 && z.getHealth()>0) {
                     System.out.println("collision");
-                    z.damage(100);
+                    z.damage(1000);
+                }
+            }
+            for (StrongZombie z : StrongZombie.getAllZombies()) {
+                if (Math.abs(z.getX() - this.x) < 10 && Math.abs(z.getY() - this.y) < 10 && z.getHealth()>0) {
+                    System.out.println("collision");
+                    z.damage(1000);
                 }
             }
         }));

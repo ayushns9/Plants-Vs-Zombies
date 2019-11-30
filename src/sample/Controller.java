@@ -35,6 +35,10 @@ public class Controller{
         System.exit(0);
     }
 
+    public static int getLevel() {
+        return level;
+    }
+
     public void newGameButtonPushed(ActionEvent event) throws IOException{
         curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
         Main.setRoot(curr_load.load());
@@ -62,7 +66,12 @@ public class Controller{
             try {
                 border = (Text) fxmlNamespace.get("money");
                 Controller.curr_money = Integer.parseInt(border.getText());
-                Zombies.spawn();
+                Random rand = new Random();
+                int xx = rand.nextInt(2);
+                if(xx==0)
+                    StrongZombie.spawn();
+                else
+                    Zombies.spawn();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -142,6 +151,9 @@ public class Controller{
     public static void wonGame() throws IOException {
         timePlay.stop();
         for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
+        for(StrongZombie z: StrongZombie.allSZombies){
             z.move.stop();
         }
         for(Plants p: Plants.allPlants){
@@ -267,12 +279,13 @@ public class Controller{
             peashooterWait = Integer.parseInt(tim.getS());
         }
 
-        if(sunFlower && curr_money>=sunFlowerCost) {
+        if(sunFlower && curr_money>=sunFlowerCost && (Integer.parseInt(tim.getS())-sunflowerWait)>=5) {
             SunFlower p = new SunFlower(Main.getRoot(), (int)x-30, (int)y- 160);
             sunFlower = false;
             Map<String, Object> fxmlNamespace = curr_load.getNamespace();
             border.setText(String.valueOf(curr_money-sunFlowerCost));
             fxmlNamespace.put("money",border);
+            sunflowerWait = Integer.parseInt(tim.getS());
         }
 
         if(groundnut && curr_money>=groundnutCost&& (Integer.parseInt(tim.getS())-groundnutWait)>=5) {
@@ -280,7 +293,8 @@ public class Controller{
             groundnut = false;
             Map<String, Object> fxmlNamespace = curr_load.getNamespace();
             border.setText(String.valueOf(curr_money-groundnutCost));
-//            fxmlNamespace.put("money",border);
+            fxmlNamespace.put("money",border);
+            groundnutWait = Integer.parseInt(tim.getS());
         }
         if(cherry && curr_money>=cherryCost&& (Integer.parseInt(tim.getS())-cherryWait)>=5) {
             Cherry p = new Cherry(Main.getRoot(), (int)x-30, (int)y- 160);
@@ -288,6 +302,7 @@ public class Controller{
             Map<String, Object> fxmlNamespace = curr_load.getNamespace();
             border.setText(String.valueOf(curr_money-cherryCost));
             fxmlNamespace.put("money",border);
+            cherryWait = Integer.parseInt(tim.getS());
         }
     }
 }

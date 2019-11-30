@@ -17,12 +17,12 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
-public class Zombies extends Character {
+public class StrongZombie extends Character {
 
-    public int health = 100;
+    public int health = 200;
 
-    protected static ArrayList<Zombies> allZombies = new ArrayList<Zombies>();
     private ImageView imageView;
+    public static ArrayList<StrongZombie> allSZombies = new ArrayList<StrongZombie>();
 
     private int x = 600;
     private int y, id ;
@@ -33,11 +33,11 @@ public class Zombies extends Character {
 
     Timeline move;
 
-    Zombies(Pane pane) throws FileNotFoundException {
-        allZombies.add(this);
+    StrongZombie(Pane pane) throws FileNotFoundException {
+        allSZombies.add(this);
         this.id = Main.idCreater;
         ++Main.idCreater;
-        Image image = new Image(new FileInputStream("./src/images/zom.gif"));
+        Image image = new Image(new FileInputStream("./src/images/Conehead_Zombie.gif"));
         imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
@@ -74,7 +74,7 @@ public class Zombies extends Character {
 
     }
     static void spawn() throws FileNotFoundException{
-        new Zombies(Main.getRoot());
+        new StrongZombie(Main.getRoot());
     }
 
 
@@ -91,7 +91,7 @@ public class Zombies extends Character {
             Main.setRoot(newPane);
 //            allZombies.remove(this);
             int allDead = 0;
-            for(Zombies zo: allZombies){
+            for(StrongZombie zo: allSZombies){
                 if(zo.health<=0)
                     allDead++;
             }
@@ -116,8 +116,7 @@ public class Zombies extends Character {
                     p = ((Cherry) p);
                     p.removePlant();
                     p.damage(100);
-                    this.health-=100;
-
+                    this.health=0;
                 }
                 catch (Exception e){
 
@@ -137,8 +136,8 @@ public class Zombies extends Character {
         }
     }
 
-    public static ArrayList<Zombies> getAllZombies() {
-        return allZombies;
+    public static ArrayList<StrongZombie> getAllZombies() {
+        return allSZombies;
     }
 
     public int getX() {
