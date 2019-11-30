@@ -168,13 +168,16 @@ public class Controller{
         Controller.border.setText(Integer.toString(curr_money));
     }
 
+
     public void dragPeaShooter(MouseEvent event) {
         System.out.println("peashooter clicked");
+        cherry=false;
         peaShooter = true;
         sunFlower = false;
         groundnut = false;
     }
     public void dragSunFlower(MouseEvent event) {
+        cherry=false;
         sunFlower = true;
         peaShooter =false;
         groundnut = false;
@@ -182,9 +185,17 @@ public class Controller{
 
     }
     public void dragGroundNut(MouseEvent event) {
+        cherry=false;
         groundnut = true;
         sunFlower = false;
         peaShooter =false;
+        System.out.println("Groundnut clicked");
+    }
+    public void dragCherry(MouseEvent event) {
+        groundnut = false;
+        sunFlower = false;
+        peaShooter =false;
+        cherry=true;
         System.out.println("Groundnut clicked");
     }
     public void drop(MouseEvent event) throws FileNotFoundException {
