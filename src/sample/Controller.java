@@ -27,6 +27,7 @@ public class Controller{
     static Text border;
     private static timer tim;
     private static Timeline timePlay;
+    private static int level = 1;
 
     public void gameExit(ActionEvent event)throws IOException{
         System.exit(0);
@@ -64,8 +65,25 @@ public class Controller{
                 ex.printStackTrace();
             }
         }));
-        timePlay.setCycleCount((Timeline.INDEFINITE));
+        timePlay.setCycleCount((level));
         timePlay.play();
+    }
+
+    public void startLevel1(ActionEvent event) throws IOException {
+        this.level = 1;
+        newGameButtonPushed(event);
+    }public void startLevel2(ActionEvent event) throws IOException {
+        this.level = 2;
+        newGameButtonPushed(event);
+    }public void startLevel3(ActionEvent event) throws IOException {
+        this.level = 3;
+        newGameButtonPushed(event);
+    }public void startLevel4(ActionEvent event) throws IOException {
+        this.level = 4;
+        newGameButtonPushed(event);
+    }public void startLevel5(ActionEvent event) throws IOException {
+        this.level = 5;
+        newGameButtonPushed(event);
     }
 
     public static timer getTim() {
