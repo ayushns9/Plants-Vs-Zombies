@@ -120,7 +120,7 @@ public class Zombies extends Character implements Cloneable{
             }
             double b = allDead;
 //            update();
-            b/=Controller.getLevel();
+            b/=2*Controller.getLevel();
             Map<String, Object> fxmlNamespace = Controller.curr_load.getNamespace();
             ProgressBar p = (ProgressBar) fxmlNamespace.get("bar");
             p.setProgress(b);

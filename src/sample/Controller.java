@@ -58,7 +58,6 @@ public class Controller{
     }
     public void paused(ActionEvent event) throws IOException{
         save.saved(new data(lms,level),user);
-
     }
 
 
@@ -149,6 +148,26 @@ public class Controller{
     }
 
     public void Enterinfo(ActionEvent event) throws IOException {
+//        timePlay.stop();
+//        sun_falling.stop();
+        for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
+        for(StrongZombie z: StrongZombie.allSZombies){
+            z.move.stop();
+        }
+        for(Plants p: Plants.allPlants){
+            try {
+                ((SunFlower) p).timePlay.stop();
+            } catch (Exception e) {
+                try {
+                    ((PeaShooter) p).move.stop();
+                }
+                catch(Exception ee){
+                }
+            }
+        }
+        Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
         info=new FXMLLoader(getClass().getResource("PlayerInfo.fxml"));
         Main.setRoot(info.load()) ;
         Scene scene = new Scene(Main.getRoot());
@@ -233,15 +252,35 @@ public class Controller{
     }
 
     public void Pause(MouseEvent event) throws IOException {
+        timePlay.stop();
+        sun_falling.stop();
+        for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
+        for(StrongZombie z: StrongZombie.allSZombies){
+            z.move.stop();
+        }
+        for(Plants p: Plants.allPlants){
+            try {
+                ((SunFlower) p).timePlay.stop();
+            } catch (Exception e) {
+                try {
+                    ((PeaShooter) p).move.stop();
+                }
+                catch(Exception ee){
+                }
+            }
+        }
         Main.setRoot(FXMLLoader.load(getClass().getResource("Pause.fxml"))) ;
         Scene scene = new Scene(Main.getRoot());
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
-
     }
+
     public void Load(ActionEvent event) throws IOException {
 
+        sun_falling.stop();
         FXMLLoader resume = new FXMLLoader(getClass().getResource("Load.fxml"));
         Main.setRoot(resume.load()) ;
         Scene scene = new Scene(Main.getRoot());
@@ -257,9 +296,27 @@ public class Controller{
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
+    }
 
-
-    }    public void Back(ActionEvent event) throws IOException {
+    public void Back(ActionEvent event) throws IOException {
+        sun_falling.stop();
+        for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
+        for(StrongZombie z: StrongZombie.allSZombies){
+            z.move.stop();
+        }
+        for(Plants p: Plants.allPlants){
+            try {
+                ((SunFlower) p).timePlay.stop();
+            } catch (Exception e) {
+                try {
+                    ((PeaShooter) p).move.stop();
+                }
+                catch(Exception ee){
+                }
+            }
+        }
         Main.setRoot(FXMLLoader.load(getClass().getResource("MainScreen.fxml"))) ;
         Scene scene = new Scene(Main.getRoot());
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
