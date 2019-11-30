@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 public class PeaShooter extends Plants {
     private int health=100;
     private int x,y;
+    private ImageView imageView;
     PeaShooter(Pane pane,int x,int y) throws FileNotFoundException {
         super(pane);
         super.allPlants.add(this);
@@ -20,7 +21,7 @@ public class PeaShooter extends Plants {
         this.y = y;
         this.imageLoc="./src/images/Peashooter.gif";
         Image image = new Image(new FileInputStream(imageLoc));
-        ImageView imageView = new ImageView(image);
+        imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
@@ -28,7 +29,7 @@ public class PeaShooter extends Plants {
         imageView.setFitWidth(45);
 
         Timeline move;
-        move = new Timeline(new KeyFrame(Duration.millis((double)1000), e -> {
+        move = new Timeline(new KeyFrame(Duration.millis((double)2500), e -> {
             try {
                 shootpea();
             } catch (FileNotFoundException ex) {
@@ -42,7 +43,9 @@ public class PeaShooter extends Plants {
     }
 
     public void shootpea() throws FileNotFoundException {
-        Pea k = new Pea(Main.getRoot(),this.x,this.y);
+        Pea k;
+        if(this.health>0)
+            k = new Pea(Main.getRoot(),this.x,this.y);
     }
 
     @Override
@@ -53,5 +56,22 @@ public class PeaShooter extends Plants {
     @Override
     public void damage(int val){
         this.health-=val;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public void removePlant() {
+        Pane newPane = Main.getRoot();
+        newPane.getChildren().remove(imageView);
+        Main.setRoot(newPane);
     }
 }

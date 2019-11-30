@@ -20,10 +20,10 @@ import java.util.Map;
 public class Controller{
     private boolean peaShooter = false,sunFlower = false, groundnut = false;
     private int peaShooterCost=50,sunFlowerCost=50,groundnutCost=50;
-    private int peashooterWait=-1,sunflowerWait=-1,groundnutWait=-1;
+    private int peashooterWait=-10,sunflowerWait=-10,groundnutWait=-10;
     private static ArrayList<LawnMover> lms = new ArrayList<LawnMover>();
     private FXMLLoader curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
-    static int curr_money;
+    static int curr_money=100;
     static Text border;
     private static timer tim;
 
@@ -45,10 +45,13 @@ public class Controller{
         lms.add(new LawnMover(Main.getRoot(),55,-92));
 
         tim = new timer();
-
-        Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)800), e -> {
+//        Zombies.spawn();
+        Map<String, Object> fxmlNamespace = curr_load.getNamespace();
+        border = (Text) fxmlNamespace.get("money");
+        Controller.curr_money = Integer.parseInt(border.getText());
+        Zombies.spawn();
+        Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)3000), e -> {
             try {
-                Map<String, Object> fxmlNamespace = curr_load.getNamespace();
                 border = (Text) fxmlNamespace.get("money");
                 Controller.curr_money = Integer.parseInt(border.getText());
                 Zombies.spawn();
@@ -58,6 +61,10 @@ public class Controller{
         }));
         timePlay.setCycleCount((Timeline.INDEFINITE));
         timePlay.play();
+    }
+
+    public static timer getTim() {
+        return tim;
     }
 
     public void Enterinfo(ActionEvent event) throws IOException {
@@ -125,7 +132,6 @@ public class Controller{
         sunFlower = false;
         peaShooter =false;
         System.out.println("Groundnut clicked");
-
     }
     public void drop(MouseEvent event) throws FileNotFoundException {
         System.out.println("Drop");
@@ -152,7 +158,8 @@ public class Controller{
         else {
             return;
         }
-        if(peaShooter && curr_money>=peaShooterCost && Integer.parseInt(tim.getS())-peashooterWait>=5) {
+
+        if(peaShooter && curr_money>=peaShooterCost && (Integer.parseInt(tim.getS())-peashooterWait)>=5) {
             PeaShooter p = new PeaShooter(Main.getRoot(), (int)x-30, (int)y- 160);
             peaShooter = false;
             Map<String, Object> fxmlNamespace = curr_load.getNamespace();
@@ -160,6 +167,7 @@ public class Controller{
             fxmlNamespace.put("money",border);
             peashooterWait = Integer.parseInt(tim.getS());
         }
+
         if(sunFlower && curr_money>=sunFlowerCost) {
             SunFlower p = new SunFlower(Main.getRoot(), (int)x-30, (int)y- 160);
             sunFlower = false;
@@ -167,6 +175,7 @@ public class Controller{
             border.setText(String.valueOf(curr_money-sunFlowerCost));
             fxmlNamespace.put("money",border);
         }
+
         if(groundnut && curr_money>=groundnutCost) {
             GroundNut p = new GroundNut(Main.getRoot(), (int)x-30, (int)y- 160);
             groundnut = false;

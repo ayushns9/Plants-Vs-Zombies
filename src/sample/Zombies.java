@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 public class Zombies extends Character {
@@ -44,7 +45,13 @@ public class Zombies extends Character {
         imageView.setPreserveRatio(true);
 
         Timeline move;
-        move = new Timeline(new KeyFrame(Duration.millis((double)150), e -> onestep()));
+        move = new Timeline(new KeyFrame(Duration.millis((double)150), e -> {
+            try {
+                onestep();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }));
         move.setCycleCount((Timeline.INDEFINITE));
         move.play();
 
@@ -58,7 +65,7 @@ public class Zombies extends Character {
         return health;
     }
 
-    public void onestep(){
+    public void onestep() throws InterruptedException {
 //        System.out.println(x);
         imageView.setTranslateX(x-2);
         x-=2;
@@ -74,8 +81,18 @@ public class Zombies extends Character {
             Controller.getLms().get(this.z).move();
         }
         for(Plants p: Plants.allPlants){
-            if(Math.abs(this.x-p.x)<10 && Math.abs(this.y-p.y)<10 && p.getHealth()>0){
-                p.damage(10);
+
+            if(this.health>0 && Math.abs(this.x-p.getX())<10 && Math.abs(this.y-p.getY())<10 && p.getHealth()>0){
+                System.out.println("collide");
+                if(Integer.parseInt(Controller.getTim().getS())%2==1 && p.getHealth()>0 && this.health>0) {
+                    p.damage(10);
+                    System.out.println(p.getHealth());
+                }
+                imageView.setTranslateX(x+2);
+                x+=2;
+            }
+            if(p.getHealth()<=0){
+                p.removePlant();
             }
         }
     }

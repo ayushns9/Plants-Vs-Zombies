@@ -19,13 +19,26 @@ public class GroundNut extends Plants {
         imageView.setFitHeight(40);
         imageView.setFitWidth(40);
     }@Override
-    public int getHealth(){
+    public int getHealth() {
         return 0;
     }
-
     @Override
     public void damage(int val){
 
     }
 
+    @Override
+    public int getX() {
+        return 0;
+    }
+
+    @Override
+    public int getY() {
+        return 0;
+    }
+
+    @Override
+    public void removePlant() {
+
+    }
 }

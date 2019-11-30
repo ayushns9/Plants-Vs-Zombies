@@ -43,4 +43,19 @@ public class SunFlower extends Plants {
     public void damage(int val){
 
     }
+
+    @Override
+    public int getX() {
+        return 0;
+    }
+
+    @Override
+    public int getY() {
+        return 0;
+    }
+
+    @Override
+    public void removePlant() {
+
+    }
 }

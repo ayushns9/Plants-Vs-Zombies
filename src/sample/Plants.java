@@ -12,8 +12,7 @@ import java.util.Random;
 public abstract class Plants extends Character {
     protected static ArrayList<Plants>  allPlants = new ArrayList<Plants>();
     protected static int idCreater = 1;
-    protected final int x = 600;
-    protected int y, id ;
+    protected int  id ;
     protected String imageLoc=null;
     protected Random rand = new Random();
     private int possibleLocations[] = {115,50,10,-40,-90};
@@ -23,5 +22,12 @@ public abstract class Plants extends Character {
     }
     public abstract int getHealth();
     public abstract void damage(int val);
+    public abstract int getX();
+    public abstract int getY();
+    public abstract void removePlant();
+
+
+
+
 
 }
