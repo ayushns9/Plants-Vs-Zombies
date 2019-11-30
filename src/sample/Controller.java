@@ -7,18 +7,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.*;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 
 public class Controller{
     private boolean peaShooter = false,sunFlower = false, groundnut = false;
+
+    private static ArrayList<LawnMover> lms = new ArrayList<LawnMover>();
     private FXMLLoader curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
     static int curr_money;
     static Text border;
@@ -32,23 +34,20 @@ public class Controller{
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
-        Zombies z = new Zombies(Main.getRoot());
-        Zombies z2 = new Zombies(Main.getRoot());
-        LawnMover l = new LawnMover(Main.getRoot(),55,112);
-        l.move();
-        LawnMover l1 = new LawnMover(Main.getRoot(),55,62);
-        LawnMover l2 = new LawnMover(Main.getRoot(),55,12);
-        LawnMover l3 = new LawnMover(Main.getRoot(),55,-42);
-        LawnMover l4 = new LawnMover(Main.getRoot(),55,-92);
+
+
+        lms.add(new LawnMover(Main.getRoot(),55,112));
+        lms.add(new LawnMover(Main.getRoot(),55,60));
+        lms.add(new LawnMover(Main.getRoot(),55,12));
+        lms.add(new LawnMover(Main.getRoot(),55,-42));
+        lms.add(new LawnMover(Main.getRoot(),55,-92));
 
         timer tim = new timer();
-        Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)7000), e -> {
+        Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)800), e -> {
             try {
                 Map<String, Object> fxmlNamespace = curr_load.getNamespace();
                 border = (Text) fxmlNamespace.get("money");
                 Controller.curr_money = Integer.parseInt(border.getText());
-                System.out.println(Controller.curr_money);
-
                 Zombies.spawn();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -56,8 +55,6 @@ public class Controller{
         }));
         timePlay.setCycleCount((Timeline.INDEFINITE));
         timePlay.play();
-
-
 
     }
 
@@ -75,8 +72,12 @@ public class Controller{
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
-
     }
+
+    public static ArrayList<LawnMover> getLms() {
+        return lms;
+    }
+
     public void Pause(MouseEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("Pause.fxml"))) ;
         Scene scene = new Scene(Main.getRoot());
@@ -136,9 +137,8 @@ public class Controller{
     }
     public void drop(MouseEvent event) throws FileNotFoundException {
         System.out.println("Drop");
+        System.out.println(event.getX());
         double x = event.getX(), y = event.getY();
-        System.out.println(x);
-        System.out.println(y);
         if(y<39 || x>518 || x<130){
             return;
         }

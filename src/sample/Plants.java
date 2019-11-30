@@ -6,9 +6,11 @@ import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Plants extends Character {
+    protected static ArrayList<Plants>  allPlants = new ArrayList<Plants>();
     protected static int idCreater = 1;
     protected final int x = 600;
     protected int y, id ;
@@ -18,7 +20,6 @@ public abstract class Plants extends Character {
     Plants(Pane pane) throws FileNotFoundException {
         this.id = Main.idCreater;
         ++Main.idCreater;
-
     }
 
 }

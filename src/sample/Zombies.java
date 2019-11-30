@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,40 +10,94 @@ import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
 
 
 public class Zombies extends Character {
 
-    private final int x = 600;
+    public int health = 100;
+    private boolean dead = false;
+
+    protected static ArrayList<Zombies> allZombies = new ArrayList<Zombies>();
+    private ImageView imageView;
+
+    private int x = 600;
     private int y, id ;
 
     private Random rand = new Random();
-    private int possibleLocations[] = {115,50,10,-40,-90};
+    private int possibleLocations[] = {115,52,10,-40,-90};
+    private int z;
 
     Zombies(Pane pane) throws FileNotFoundException {
+        allZombies.add(this);
         this.id = Main.idCreater;
         ++Main.idCreater;
         Image image = new Image(new FileInputStream("./src/images/zom.gif"));
-        ImageView imageView = new ImageView(image);
+        imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
-        int y = rand.nextInt(5);
-        imageView.setTranslateY(possibleLocations[y]);
+        z = rand.nextInt(5);
+        imageView.setTranslateY(possibleLocations[z]);
+        this.y = possibleLocations[z];
         imageView.setFitHeight(70);
         imageView.setFitWidth(70);
         imageView.setPreserveRatio(true);
-//        pane.getChildren().get(this.id).setTranslateX(pane.getChildren().get(this.id).getTranslateX()-70);
-        TranslateTransition t = new TranslateTransition();
-        t.setDuration(Duration.millis(20000));
-        t.setNode(imageView);
-        t.setByX(-400);
-        t.setCycleCount(50);
-        t.setAutoReverse(false);
-        t.play();
+
+        Timeline move;
+        move = new Timeline(new KeyFrame(Duration.millis((double)15), e -> onestep()));
+        move.setCycleCount((Timeline.INDEFINITE));
+        move.play();
+
     }
     static void spawn() throws FileNotFoundException{
         new Zombies(Main.getRoot());
     }
 
+    public boolean getDead(){
+        return this.dead;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void onestep(){
+//        System.out.println(x);
+        imageView.setTranslateX(x-2);
+        x-=2;
+        if(this.health<=0){
+            Pane newPane = Main.getRoot();
+            newPane.getChildren().remove(imageView);
+            Main.setRoot(newPane);
+            this.dead = true;
+        }
+        if(this.x<=132 && Controller.getLms().get(this.z).getActive()){
+            Pane newPane = Main.getRoot();
+            newPane.getChildren().remove(imageView);
+            Main.setRoot(newPane);
+            Controller.getLms().get(this.z).move();
+        }
+        for(Plants p: Plants.allPlants){
+            if(Math.abs(this.x-p.x)<10 && Math.abs(this.y-p.y)<10 && p.health>0){
+
+            }
+        }
+    }
+
+    public static ArrayList<Zombies> getAllZombies() {
+        return allZombies;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void damage(int val){
+        this.health -= val;
+    }
 }

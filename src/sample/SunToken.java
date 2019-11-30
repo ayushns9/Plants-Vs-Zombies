@@ -15,6 +15,7 @@ public class SunToken extends Character {
     private int x,y, id;
     private boolean collected = false;
     SunToken(Pane pane, int x, int y) throws FileNotFoundException {
+
         this.id = Main.idCreater;
         ++Main.idCreater;
         Image image = new Image(new FileInputStream("./src/images/sun.png"));
@@ -24,7 +25,6 @@ public class SunToken extends Character {
         imageView.setFitWidth(35);
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
-
 
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
