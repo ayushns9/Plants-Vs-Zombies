@@ -25,6 +25,6 @@
       <Button layoutX="99.0" layoutY="186.0" mnemonicParsing="false" onAction="#startLevel4" text="Level 4" />
       <Button layoutX="104.0" layoutY="334.0" mnemonicParsing="false" onAction="#Back" text="Back" />
       <Button layoutX="98.0" layoutY="223.0" mnemonicParsing="false" onAction="#startLevel5" text="Level 5" />
-      <Button layoutX="99.0" layoutY="263.0" mnemonicParsing="false" onAction="#startLevel6" text="Bonus" />
+      <Button layoutX="99.0" layoutY="263.0" mnemonicParsing="false" onAction="#startLevel6" text="Survial" />
    </children>
 </AnchorPane>

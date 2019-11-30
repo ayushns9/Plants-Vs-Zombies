@@ -99,7 +99,10 @@ public class Controller{
                 ex.printStackTrace();
             }
         }));
-        timePlay.setCycleCount((2*level));
+        if(level==-1)
+            timePlay.setCycleCount(Timeline.INDEFINITE);
+        else
+            timePlay.setCycleCount((2*level));
         timePlay.play();
         Random rand = new Random();
         int possibleLocations[] = {140,200,500,300,400,250,350,450,215,315,180};
@@ -277,8 +280,7 @@ public class Controller{
         Main.window.setScene(scene);
         Main.window.show();
     }
-
-    public void Load(ActionEvent event) throws IOException {
+    public void Load(ActionEvent event) throws IOException, ClassNotFoundException {
 
         sun_falling.stop();
         FXMLLoader resume = new FXMLLoader(getClass().getResource("Load.fxml"));
@@ -292,6 +294,99 @@ public class Controller{
             System.out.println(saves);
             System.out.println(saves.get(saves.size()-i-1));
             btn.setText(saves.get(saves.size()-i-1));
+            data d = save.unsave(saves.get(saves.size()-temp-1));
+            btn.setOnAction(e -> {
+                curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
+                try {
+                    Main.setRoot(curr_load.load());
+                    System.out.println("dd");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                Scene scene1 = new Scene(Main.getRoot());
+                System.out.println(Main.window);
+                Main.window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                Main.window.setScene(scene1);
+                Main.window.show();
+
+                lms = d.getLms();
+                Plants.allPlants = d.getAllPlants();
+                Zombies.allZombies = d.getAllZombies();
+                for (int j = 0; j <lms.size(); j++) {
+                    try {
+                        if(lms.get(j).getActive())
+                        new LawnMover(Main.getRoot(),lms.get(j).getX(),lms.get(j).getY());
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+//
+                tim = new timer();
+                for(Plants p: Plants.allPlants){
+                    try {
+                        p=(PeaShooter) p;
+                        ((PeaShooter) p).place(p.getX(),p.getY(),Main.getRoot());
+                    } catch (Exception ex) {
+
+                    }
+
+                    try {
+                        p=(SunFlower) p;
+                        ((SunFlower) p).place(p.getX(),p.getY(),Main.getRoot());
+                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+                    }
+                    try {
+                        p=(GroundNut) p;
+                        ((GroundNut) p).place(p.getX(),p.getY(),Main.getRoot());
+                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+                    }
+                    try {
+                        p=(Cherry) p;
+                        ((Cherry) p).place(p.getX(),p.getY(),Main.getRoot());
+                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+                    }
+
+                }
+                Map<String, Object> fxmNamespace = curr_load.getNamespace();
+                border = (Text) fxmNamespace.get("money");
+                Controller.curr_money = Integer.parseInt(border.getText());
+
+                timePlay = new Timeline(new KeyFrame(Duration.millis((double)3000), q -> {
+                    try {
+                        border = (Text) fxmNamespace.get("money");
+                        Controller.curr_money = Integer.parseInt(border.getText());
+                        Random rand = new Random();
+                        int xx = rand.nextInt(2);
+                        if(xx==0)
+                            StrongZombie.spawn();
+                        else
+                            Zombies.spawn();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
+                }));
+                timePlay.setCycleCount((2*level));
+                timePlay.play();
+                Random rand = new Random();
+                int possibleLocations[] = {140,200,500,300,400,250,350,450,215,315,180};
+                sun_falling = new Timeline(new KeyFrame(Duration.millis((double)10000), t -> {
+                    try {
+                        (new SunToken(Main.getRoot(),possibleLocations[rand.nextInt(possibleLocations.length)],-140)).onestep();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
+                }));
+                sun_falling.setCycleCount((Timeline.INDEFINITE));
+                sun_falling.play();
+                System.out.println(user);
+
+                System.out.println(d);
+
+            });
+
         }
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);

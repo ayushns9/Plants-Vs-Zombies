@@ -15,6 +15,15 @@ public class LawnMover extends Character implements Cloneable {
 
     private boolean active = true;
     private int id,x,y;
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     transient ImageView imageView;
     transient Timeline move;
     LawnMover(Pane pane, int x, int y) throws FileNotFoundException {
