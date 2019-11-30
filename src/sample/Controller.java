@@ -74,6 +74,14 @@ public class Controller{
         Main.window.setScene(scene);
         Main.window.show();
     }
+
+    public static void lostGame() throws IOException {
+        Main.setRoot(FXMLLoader.load(Controller.class.getResource("lost_page.fxml"))) ;
+        Scene scene = new Scene(Main.getRoot());
+//        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+    }
     public void level(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("choose.fxml"))) ;
         Scene scene = new Scene(Main.getRoot());

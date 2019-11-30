@@ -10,6 +10,7 @@ import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -45,11 +46,17 @@ public class Zombies extends Character {
         imageView.setPreserveRatio(true);
 
         Timeline move;
-        move = new Timeline(new KeyFrame(Duration.millis((double)150), e -> {
+        move = new Timeline(new KeyFrame(Duration.millis((double)15), e -> {
             try {
                 onestep();
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
+            } catch(GameLostException g){
+                try {
+                    Controller.lostGame();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         }));
         move.setCycleCount((Timeline.INDEFINITE));
@@ -65,33 +72,36 @@ public class Zombies extends Character {
         return health;
     }
 
-    public void onestep() throws InterruptedException {
+    public void onestep() throws InterruptedException, GameLostException {
 //        System.out.println(x);
-        imageView.setTranslateX(x-2);
-        x-=2;
-        if(this.health<=0){
+        imageView.setTranslateX(x - 2);
+        x -= 2;
+        if (this.health <= 0) {
             Pane newPane = Main.getRoot();
             newPane.getChildren().remove(imageView);
             Main.setRoot(newPane);
         }
-        if(this.x<=132 && Controller.getLms().get(this.z).getActive()){
+        if (this.x <= 132 && Controller.getLms().get(this.z).getActive() && this.health>0) {
             Pane newPane = Main.getRoot();
             newPane.getChildren().remove(imageView);
             Main.setRoot(newPane);
             Controller.getLms().get(this.z).move();
+            this.health -= 100;
+        } else if (this.x <= 132 && this.health>0) {
+            throw new GameLostException("You lost");
         }
-        for(Plants p: Plants.allPlants){
+        for (Plants p : Plants.allPlants) {
 
-            if(this.health>0 && Math.abs(this.x-p.getX())<10 && Math.abs(this.y-p.getY())<10 && p.getHealth()>0){
+            if (this.health > 0 && Math.abs(this.x - p.getX()) < 10 && Math.abs(this.y - p.getY()) < 10 && p.getHealth() > 0) {
                 System.out.println("collide");
-                if(Integer.parseInt(Controller.getTim().getS())%2==1 && p.getHealth()>0 && this.health>0) {
+                if (Integer.parseInt(Controller.getTim().getS()) % 2 == 1 && p.getHealth() > 0 && this.health > 0) {
                     p.damage(10);
                     System.out.println(p.getHealth());
                 }
-                imageView.setTranslateX(x+2);
-                x+=2;
+                imageView.setTranslateX(x + 2);
+                x += 2;
             }
-            if(p.getHealth()<=0){
+            if (p.getHealth() <= 0) {
                 p.removePlant();
             }
         }
