@@ -64,7 +64,7 @@ public class Controller{
                 ex.printStackTrace();
             }
         }));
-        timePlay.setCycleCount((2));
+        timePlay.setCycleCount((Timeline.INDEFINITE));
         timePlay.play();
     }
 
@@ -82,6 +82,10 @@ public class Controller{
 
     public static void lostGame() throws IOException {
 
+        timePlay.stop();
+        for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
         for(Plants p: Plants.allPlants){
             try {
                 ((SunFlower) p).timePlay.stop();
@@ -102,7 +106,7 @@ public class Controller{
 
     }
     public static void wonGame() throws IOException {
-
+        timePlay.stop();
         for(Zombies z: Zombies.allZombies){
             z.move.stop();
         }
