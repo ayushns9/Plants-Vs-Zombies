@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 
 public class Controller{
@@ -27,6 +28,7 @@ public class Controller{
     static Text border;
     private static timer tim;
     private static Timeline timePlay;
+    private static Timeline sun_falling;
     private static int level = 1;
 
     public void gameExit(ActionEvent event)throws IOException{
@@ -67,6 +69,20 @@ public class Controller{
         }));
         timePlay.setCycleCount((level));
         timePlay.play();
+//        SunToken sun = (new SunToken(Main.getRoot(),0,0));
+        Random rand = new Random();
+        int possibleLocations[] = {140,200,500,300,400,250,350,450,215,315,180};
+        sun_falling = new Timeline(new KeyFrame(Duration.millis((double)10000), e -> {
+            try {
+
+                (new SunToken(Main.getRoot(),possibleLocations[rand.nextInt(possibleLocations.length)],-140)).onestep();
+
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }));
+        sun_falling.setCycleCount((Timeline.INDEFINITE));
+        sun_falling.play();
     }
 
     public void startLevel1(ActionEvent event) throws IOException {

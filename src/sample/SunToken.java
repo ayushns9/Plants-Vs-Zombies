@@ -14,12 +14,13 @@ import java.io.FileNotFoundException;
 public class SunToken extends Character {
     private int x,y, id;
     private boolean collected = false;
+    public ImageView imageView;
     SunToken(Pane pane, int x, int y) throws FileNotFoundException {
 
         this.id = Main.idCreater;
         ++Main.idCreater;
         Image image = new Image(new FileInputStream("./src/images/sun.png"));
-        ImageView imageView = new ImageView(image);
+        imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setFitHeight(35);
         imageView.setFitWidth(35);
@@ -37,5 +38,13 @@ public class SunToken extends Character {
             }
         });
     }
-
+    public void onestep(){
+        TranslateTransition t = new TranslateTransition();
+        t.setDuration(Duration.millis(20000));
+        t.setNode(imageView);
+        t.setByY(400);
+        t.setCycleCount(50);
+        t.setAutoReverse(false);
+        t.play();
+    }
 }
