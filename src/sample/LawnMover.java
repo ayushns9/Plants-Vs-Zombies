@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class LawnMover extends Character {
+
     private boolean active = true;
     private int id,x,y;
     ImageView imageView;
@@ -35,6 +36,10 @@ public class LawnMover extends Character {
     }
     public boolean getActive(){
         return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     void move(){

@@ -26,12 +26,14 @@ public class Controller{
     static int curr_money=100;
     static Text border;
     private static timer tim;
+    private static Timeline timePlay;
 
     public void gameExit(ActionEvent event)throws IOException{
         System.exit(0);
     }
 
     public void newGameButtonPushed(ActionEvent event) throws IOException{
+        curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
         Main.setRoot(curr_load.load());
         Scene scene = new Scene(Main.getRoot());
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -45,12 +47,11 @@ public class Controller{
         lms.add(new LawnMover(Main.getRoot(),55,-92));
 
         tim = new timer();
-//        Zombies.spawn();
         Map<String, Object> fxmlNamespace = curr_load.getNamespace();
         border = (Text) fxmlNamespace.get("money");
         Controller.curr_money = Integer.parseInt(border.getText());
-        Zombies.spawn();
-        Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)3000), e -> {
+
+        timePlay = new Timeline(new KeyFrame(Duration.millis((double)3000), e -> {
             try {
                 border = (Text) fxmlNamespace.get("money");
                 Controller.curr_money = Integer.parseInt(border.getText());
@@ -76,11 +77,17 @@ public class Controller{
     }
 
     public static void lostGame() throws IOException {
-        Main.setRoot(FXMLLoader.load(Controller.class.getResource("lost_page.fxml"))) ;
+        timePlay.stop();
+        for(LawnMover lm: lms){
+            lm.setActive(true);
+        }
+        Main.setRoot(FXMLLoader.load(Controller.class.getResource("lost_page.fxml")));
         Scene scene = new Scene(Main.getRoot());
 //        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
+
+//        Main.window.show();
     }
     public void level(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("choose.fxml"))) ;

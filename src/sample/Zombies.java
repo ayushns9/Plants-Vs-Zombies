@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -88,6 +89,7 @@ public class Zombies extends Character {
             Controller.getLms().get(this.z).move();
             this.health -= 100;
         } else if (this.x <= 132 && this.health>0) {
+            this.health=0;
             throw new GameLostException("You lost");
         }
         for (Plants p : Plants.allPlants) {
