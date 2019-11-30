@@ -34,4 +34,13 @@ public class SunFlower extends Plants {
         timePlay.setCycleCount((Timeline.INDEFINITE));
         timePlay.play();
     }
+    @Override
+    public int getHealth(){
+        return 0;
+    }
+
+    @Override
+    public void damage(int val){
+
+    }
 }

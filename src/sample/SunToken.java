@@ -37,4 +37,5 @@ public class SunToken extends Character {
             }
         });
     }
+
 }

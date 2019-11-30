@@ -45,7 +45,13 @@ public class PeaShooter extends Plants {
         Pea k = new Pea(Main.getRoot(),this.x,this.y);
     }
 
+    @Override
     public int getHealth() {
         return health;
+    }
+
+    @Override
+    public void damage(int val){
+        this.health-=val;
     }
 }

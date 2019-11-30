@@ -21,5 +21,7 @@ public abstract class Plants extends Character {
         this.id = Main.idCreater;
         ++Main.idCreater;
     }
+    public abstract int getHealth();
+    public abstract void damage(int val);
 
 }

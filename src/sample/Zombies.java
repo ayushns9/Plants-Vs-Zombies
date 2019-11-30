@@ -17,7 +17,6 @@ import java.util.Random;
 public class Zombies extends Character {
 
     public int health = 100;
-    private boolean dead = false;
 
     protected static ArrayList<Zombies> allZombies = new ArrayList<Zombies>();
     private ImageView imageView;
@@ -45,7 +44,7 @@ public class Zombies extends Character {
         imageView.setPreserveRatio(true);
 
         Timeline move;
-        move = new Timeline(new KeyFrame(Duration.millis((double)15), e -> onestep()));
+        move = new Timeline(new KeyFrame(Duration.millis((double)150), e -> onestep()));
         move.setCycleCount((Timeline.INDEFINITE));
         move.play();
 
@@ -54,9 +53,6 @@ public class Zombies extends Character {
         new Zombies(Main.getRoot());
     }
 
-    public boolean getDead(){
-        return this.dead;
-    }
 
     public int getHealth() {
         return health;
@@ -70,7 +66,6 @@ public class Zombies extends Character {
             Pane newPane = Main.getRoot();
             newPane.getChildren().remove(imageView);
             Main.setRoot(newPane);
-            this.dead = true;
         }
         if(this.x<=132 && Controller.getLms().get(this.z).getActive()){
             Pane newPane = Main.getRoot();
@@ -79,8 +74,8 @@ public class Zombies extends Character {
             Controller.getLms().get(this.z).move();
         }
         for(Plants p: Plants.allPlants){
-            if(Math.abs(this.x-p.x)<10 && Math.abs(this.y-p.y)<10 && p.health>0){
-
+            if(Math.abs(this.x-p.x)<10 && Math.abs(this.y-p.y)<10 && p.getHealth()>0){
+                p.damage(10);
             }
         }
     }
