@@ -95,6 +95,7 @@ public class Zombies extends Character {
         for (Plants p : Plants.allPlants) {
 
             if (this.health > 0 && Math.abs(this.x - p.getX()) < 10 && Math.abs(this.y - p.getY()) < 10 && p.getHealth() > 0) {
+
                 System.out.println("collide");
                 if (Integer.parseInt(Controller.getTim().getS()) % 2 == 1 && p.getHealth() > 0 && this.health > 0) {
                     p.damage(10);
@@ -103,6 +104,7 @@ public class Zombies extends Character {
                 imageView.setTranslateX(x + 2);
                 x += 2;
             }
+
             if (p.getHealth() <= 0) {
                 p.removePlant();
             }

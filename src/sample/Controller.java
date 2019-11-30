@@ -18,9 +18,9 @@ import java.util.Map;
 
 
 public class Controller{
-    private boolean peaShooter = false,sunFlower = false, groundnut = false;
-    private int peaShooterCost=50,sunFlowerCost=50,groundnutCost=50;
-    private int peashooterWait=-10,sunflowerWait=-10,groundnutWait=-10;
+    private boolean peaShooter = false,sunFlower = false, groundnut = false,cherry=false;
+    private int peaShooterCost=50,sunFlowerCost=50,groundnutCost=50,cherryCost=50;
+    private int peashooterWait=-10,sunflowerWait=-10,groundnutWait=-10,cherryWait=-10;
     private static ArrayList<LawnMover> lms = new ArrayList<LawnMover>();
     private FXMLLoader curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
     static int curr_money=100;
@@ -64,7 +64,7 @@ public class Controller{
                 ex.printStackTrace();
             }
         }));
-        timePlay.setCycleCount((Timeline.INDEFINITE));
+        timePlay.setCycleCount(Timeline.INDEFINITE);
         timePlay.play();
     }
 
@@ -136,11 +136,13 @@ public class Controller{
         peaShooter = true;
         sunFlower = false;
         groundnut = false;
+        cherry=false;
     }
     public void dragSunFlower(MouseEvent event) {
         sunFlower = true;
         peaShooter =false;
         groundnut = false;
+        cherry=false;
         System.out.println("sunflower clicked");
 
     }
@@ -148,7 +150,15 @@ public class Controller{
         groundnut = true;
         sunFlower = false;
         peaShooter =false;
+        cherry=false;
         System.out.println("Groundnut clicked");
+    }
+    public void dragCherry(MouseEvent event) {
+        groundnut = false;
+        sunFlower = false;
+        peaShooter =false;
+        cherry=true;
+        System.out.println("cherry clicked");
     }
     public void drop(MouseEvent event) throws FileNotFoundException {
         System.out.println("Drop");
@@ -185,7 +195,7 @@ public class Controller{
             peashooterWait = Integer.parseInt(tim.getS());
         }
 
-        if(sunFlower && curr_money>=sunFlowerCost) {
+        if(sunFlower && curr_money>=sunFlowerCost&& (Integer.parseInt(tim.getS())-sunflowerWait)>=5) {
             SunFlower p = new SunFlower(Main.getRoot(), (int)x-30, (int)y- 160);
             sunFlower = false;
             Map<String, Object> fxmlNamespace = curr_load.getNamespace();
@@ -193,11 +203,18 @@ public class Controller{
             fxmlNamespace.put("money",border);
         }
 
-        if(groundnut && curr_money>=groundnutCost) {
+        if(groundnut && curr_money>=groundnutCost&& (Integer.parseInt(tim.getS())-groundnutWait)>=5) {
             GroundNut p = new GroundNut(Main.getRoot(), (int)x-30, (int)y- 160);
             groundnut = false;
             Map<String, Object> fxmlNamespace = curr_load.getNamespace();
             border.setText(String.valueOf(curr_money-groundnutCost));
+//            fxmlNamespace.put("money",border);
+        }
+        if(cherry && curr_money>=cherryCost&& (Integer.parseInt(tim.getS())-cherryWait)>=5) {
+            Cherry p = new Cherry(Main.getRoot(), (int)x-30, (int)y- 160);
+            cherry = false;
+            Map<String, Object> fxmlNamespace = curr_load.getNamespace();
+            border.setText(String.valueOf(curr_money-cherryCost));
             fxmlNamespace.put("money",border);
         }
     }

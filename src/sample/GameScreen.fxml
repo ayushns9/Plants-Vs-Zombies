@@ -40,12 +40,12 @@
                   <Image url="@../images/wallnut-button.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="59.0" fitWidth="70.0" layoutX="-8.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="59.0" fitWidth="70.0" layoutX="38.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/sun.png" />
                </image>
             </ImageView>
-            <Text fx:id="money" fontSmoothingType="LCD" layoutX="14.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200">
+            <Text fx:id="money" fontSmoothingType="LCD" layoutX="62.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200">
                <font>
                   <Font size="9.0" />
                </font>
@@ -56,6 +56,11 @@
                </image>
             </ImageView>
             <ProgressBar layoutX="245.0" layoutY="4.0" prefWidth="200.0" progress="0.24" />
+            <ImageView fitHeight="59.0" fitWidth="36.0" layoutY="152.0" onMouseClicked="#dragCherry" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/card.jpg" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
     </children>
 </GridPane>
