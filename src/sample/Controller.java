@@ -64,7 +64,7 @@ public class Controller{
                 ex.printStackTrace();
             }
         }));
-        timePlay.setCycleCount(Timeline.INDEFINITE);
+        timePlay.setCycleCount((Timeline.INDEFINITE));
         timePlay.play();
     }
 
@@ -82,6 +82,10 @@ public class Controller{
 
     public static void lostGame() throws IOException {
 
+        timePlay.stop();
+        for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
         for(Plants p: Plants.allPlants){
             try {
                 ((SunFlower) p).timePlay.stop();
@@ -102,7 +106,7 @@ public class Controller{
 
     }
     public static void wonGame() throws IOException {
-
+        timePlay.stop();
         for(Zombies z: Zombies.allZombies){
             z.move.stop();
         }
@@ -218,7 +222,7 @@ public class Controller{
             peashooterWait = Integer.parseInt(tim.getS());
         }
 
-        if(sunFlower && curr_money>=sunFlowerCost&& (Integer.parseInt(tim.getS())-sunflowerWait)>=5) {
+        if(sunFlower && curr_money>=sunFlowerCost) {
             SunFlower p = new SunFlower(Main.getRoot(), (int)x-30, (int)y- 160);
             sunFlower = false;
             Map<String, Object> fxmlNamespace = curr_load.getNamespace();
