@@ -11,7 +11,7 @@ import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class LawnMover extends Character {
+public class LawnMover extends Character implements Cloneable {
 
     private boolean active = true;
     private int id,x,y;
@@ -38,6 +38,9 @@ public class LawnMover extends Character {
         return active;
     }
 
+    public LawnMover clone() throws CloneNotSupportedException {
+        return (LawnMover) super.clone();
+    }
     public void setActive(boolean active) {
         this.active = active;
     }

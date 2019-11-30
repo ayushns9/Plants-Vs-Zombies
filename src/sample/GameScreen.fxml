@@ -55,7 +55,7 @@
                   <Image url="@../images/pause.png" />
                </image>
             </ImageView>
-            <ProgressBar layoutX="245.0" layoutY="4.0" prefWidth="200.0" progress="0.24" />
+            <ProgressBar fx:id="bar" layoutX="245.0" layoutY="4.0" prefWidth="200.0" progress="0.00" />
             <ImageView fitHeight="59.0" fitWidth="36.0" layoutY="152.0" onMouseClicked="#dragCherry" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/card.jpg" />

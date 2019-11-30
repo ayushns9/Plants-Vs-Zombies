@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Plants extends Character {
+public abstract class Plants extends Character implements Cloneable {
     protected static ArrayList<Plants>  allPlants = new ArrayList<Plants>();
     protected static int idCreater = 1;
     protected int  id ;
@@ -26,8 +26,8 @@ public abstract class Plants extends Character {
     public abstract int getY();
     public abstract void removePlant();
 
-
-
-
-
+    @Override
+    public Plants clone() throws CloneNotSupportedException {
+        return (Plants) super.clone();
+    }
 }

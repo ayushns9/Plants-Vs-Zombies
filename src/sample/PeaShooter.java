@@ -6,11 +6,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PeaShooter extends Plants {
+    private static Map<Pair,PeaShooter> instances = new HashMap<Pair,PeaShooter>();
     private int health=100;
     private int x,y;
     private ImageView imageView;
@@ -46,6 +50,14 @@ public class PeaShooter extends Plants {
         Pea k;
         if(this.health>0)
             k = new Pea(Main.getRoot(),this.x,this.y);
+    }
+
+    public PeaShooter getInstance(int x, int y) throws FileNotFoundException {
+        Pair pp = new Pair(x,y);
+        if(!instances.containsKey(pp)){
+            instances.put(pp, new PeaShooter(new Pane(),x,y));
+        }
+        return instances.get(pp);
     }
 
     @Override

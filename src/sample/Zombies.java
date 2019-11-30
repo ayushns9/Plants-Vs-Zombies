@@ -4,6 +4,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -13,11 +15,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
-public class Zombies extends Character {
+public class Zombies extends Character implements Cloneable{
 
     public int health = 100;
 
@@ -32,6 +35,7 @@ public class Zombies extends Character {
     private int z;
 
     Timeline move;
+
 
     Zombies(Pane pane) throws FileNotFoundException {
         allZombies.add(this);
@@ -82,6 +86,15 @@ public class Zombies extends Character {
         return health;
     }
 
+    public void update(){
+        notifyAll();
+    }
+
+    @Override
+    public Zombies clone() throws CloneNotSupportedException {
+        return (Zombies) super.clone();
+    }
+
     public void onestep() throws InterruptedException, GameLostException, GameWonException {
         imageView.setTranslateX(x - 2);
         x -= 2;
@@ -99,6 +112,12 @@ public class Zombies extends Character {
                 if(zo.health<=0)
                     allDead++;
             }
+            double b = allDead;
+            update();
+            b/=Controller.getLevel();
+            Map<String, Object> fxmlNamespace = Controller.curr_load.getNamespace();
+            ProgressBar p = (ProgressBar) fxmlNamespace.get("bar");
+            p.setProgress(b);
             if(allDead==Controller.getLevel()){
                 throw new GameWonException("You won");
             }
@@ -121,7 +140,6 @@ public class Zombies extends Character {
                     p.removePlant();
                     p.damage(100);
                     this.health-=100;
-
                 }
                 catch (Exception e){
 

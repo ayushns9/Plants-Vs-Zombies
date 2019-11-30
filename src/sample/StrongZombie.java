@@ -91,10 +91,15 @@ public class StrongZombie extends Character {
             Main.setRoot(newPane);
 //            allZombies.remove(this);
             int allDead = 0;
-            for(StrongZombie zo: allSZombies){
+            for(Zombies zo: Zombies.allZombies){
                 if(zo.health<=0)
                     allDead++;
             }
+            for(StrongZombie zo: StrongZombie.getAllZombies()){
+                if(zo.health<=0)
+                    allDead++;
+            }
+
             if(allDead==Controller.getLevel()){
                 throw new GameWonException("You won");
             }
