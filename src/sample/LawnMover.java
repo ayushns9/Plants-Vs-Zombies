@@ -57,7 +57,7 @@ public class LawnMover extends Character implements Cloneable {
     void move(){
         this.active = false;
 
-        move = new Timeline(new KeyFrame(Duration.millis((double)5), e -> {
+        move = new Timeline(new KeyFrame(Duration.millis((double)50), e -> {
             imageView.setTranslateX(x + 5);
             x += 5;
             for (Zombies z : Zombies.getAllZombies()) {
