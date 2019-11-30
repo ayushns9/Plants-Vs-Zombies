@@ -1,11 +1,16 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Map;
 
 public class SunFlower extends Plants {
 
@@ -19,6 +24,14 @@ public class SunFlower extends Plants {
         imageView.setTranslateY(y);
         imageView.setFitHeight(60);
         imageView.setFitWidth(60);
-        SunToken st = new SunToken(Main.getRoot(),x,y);
+        Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)6000), e -> {
+            try {
+                new SunToken(Main.getRoot(),x,y);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }));
+        timePlay.setCycleCount((Timeline.INDEFINITE));
+        timePlay.play();
     }
 }
