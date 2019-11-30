@@ -17,8 +17,8 @@ public class Pea extends Character implements Cloneable{
 
     private int id, x, y;
     private boolean isActive = true;
-    ImageView imageView;
-
+    transient ImageView imageView;
+    transient Timeline move;
     Pea(Pane pane, int x, int y) throws FileNotFoundException {
         this.x = x+30;
         this.y = y-5;
@@ -33,7 +33,6 @@ public class Pea extends Character implements Cloneable{
         imageView.setFitWidth(15);
         imageView.setPreserveRatio(true);
 
-        Timeline move;
         move = new Timeline(new KeyFrame(Duration.millis((double)30), e -> onestep()));
         move.setCycleCount((Timeline.INDEFINITE));
         move.play();

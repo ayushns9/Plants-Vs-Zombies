@@ -14,6 +14,7 @@ import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -21,11 +22,12 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Zombies extends Character implements Cloneable{
+//public class Zombies extends Character implements Serializable {
 
     public int health = 100;
 
     protected static ArrayList<Zombies> allZombies = new ArrayList<Zombies>();
-    private ImageView imageView;
+    private transient ImageView imageView;
 
     private int x = 600;
     private int y, id ;
@@ -34,18 +36,21 @@ public class Zombies extends Character implements Cloneable{
     private int possibleLocations[] = {115,52,10,-40,-90};
     private int z;
 
-    Timeline move;
+    transient Timeline move;
 
 
     Zombies(Pane pane) throws FileNotFoundException {
         allZombies.add(this);
         this.id = Main.idCreater;
         ++Main.idCreater;
+        z = rand.nextInt(5);
+        place(z,x,pane);
+    }
+    void place(int z,int x,Pane pane) throws FileNotFoundException {
         Image image = new Image(new FileInputStream("./src/images/zom.gif"));
         imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
-        z = rand.nextInt(5);
         imageView.setTranslateY(possibleLocations[z]);
         this.y = possibleLocations[z];
         imageView.setFitHeight(70);
@@ -77,6 +82,7 @@ public class Zombies extends Character implements Cloneable{
         move.play();
 
     }
+
     static void spawn() throws FileNotFoundException{
         new Zombies(Main.getRoot());
     }
@@ -118,7 +124,7 @@ public class Zombies extends Character implements Cloneable{
             Map<String, Object> fxmlNamespace = Controller.curr_load.getNamespace();
             ProgressBar p = (ProgressBar) fxmlNamespace.get("bar");
             p.setProgress(b);
-            if(allDead==Controller.getLevel()){
+            if(allDead==2*Controller.getLevel()){
                 throw new GameWonException("You won");
             }
         }

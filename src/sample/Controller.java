@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -23,14 +25,18 @@ public class Controller{
     private int peaShooterCost=50,sunFlowerCost=50,groundnutCost=50,cherryCost=50;
     private int peashooterWait=-10,sunflowerWait=-10,groundnutWait=-10,cherryWait=-10;
     private static ArrayList<LawnMover> lms = new ArrayList<LawnMover>();
+    private static ArrayList<String> saves = new ArrayList<>();
+    private static String user;
     static FXMLLoader curr_load = new FXMLLoader(Controller.class.getResource("GameScreen.fxml"));
+    private FXMLLoader info = new FXMLLoader(getClass().getResource("PlayerInfo.fxml"));
+//    static FXMLLoader curr_load = new FXMLLoader(Controller.class.getResource("GameScreen.fxml"));
     static int curr_money=100;
     static Text border;
     private static timer tim;
     private static Timeline timePlay;
     private static Timeline sun_falling;
     private static int level = 1;
-
+    private static Map<String, Object> fxmltext;
     public void gameExit(ActionEvent event)throws IOException{
         System.exit(0);
     }
@@ -38,6 +44,23 @@ public class Controller{
     public static int getLevel() {
         return level;
     }
+    public void savegame(ActionEvent event) throws IOException, ClassNotFoundException {
+        save.saved(new data(lms,level),user);
+        saves.add(user);
+        System.out.println(saves);
+        FXMLLoader cu = new FXMLLoader(getClass().getResource("MainScreen.fxml"));
+        Main.setRoot(cu.load());
+        Scene scene = new Scene(Main.getRoot());
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene);
+        Main.window.show();
+        System.out.println("sss");
+    }
+    public void paused(ActionEvent event) throws IOException{
+        save.saved(new data(lms,level),user);
+
+    }
+
 
     public void newGameButtonPushed(ActionEvent event) throws IOException{
         curr_load = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
@@ -58,6 +81,7 @@ public class Controller{
         lms.add(new LawnMover(Main.getRoot(),55,-92));
 
         tim = new timer();
+
         Map<String, Object> fxmlNamespace = curr_load.getNamespace();
         border = (Text) fxmlNamespace.get("money");
         Controller.curr_money = Integer.parseInt(border.getText());
@@ -76,7 +100,7 @@ public class Controller{
                 ex.printStackTrace();
             }
         }));
-        timePlay.setCycleCount((level));
+        timePlay.setCycleCount((2*level));
         timePlay.play();
         Random rand = new Random();
         int possibleLocations[] = {140,200,500,300,400,250,350,450,215,315,180};
@@ -89,23 +113,31 @@ public class Controller{
         }));
         sun_falling.setCycleCount((Timeline.INDEFINITE));
         sun_falling.play();
+        System.out.println(user);
     }
 
     public void startLevel1(ActionEvent event) throws IOException {
         this.level = 1;
-        newGameButtonPushed(event);
+        Enterinfo(event);
+//        newGameButtonPushed(event);
     }public void startLevel2(ActionEvent event) throws IOException {
         this.level = 2;
-        newGameButtonPushed(event);
+        Enterinfo(event);
+//        newGameButtonPushed(event);
     }public void startLevel3(ActionEvent event) throws IOException {
         this.level = 3;
-        newGameButtonPushed(event);
+        Enterinfo(event);
+//        newGameButtonPushed(event);
     }public void startLevel4(ActionEvent event) throws IOException {
         this.level = 4;
-        newGameButtonPushed(event);
+        Enterinfo(event);
+
+//        newGameButtonPushed(event);
     }public void startLevel5(ActionEvent event) throws IOException {
         this.level = 5;
-        newGameButtonPushed(event);
+        Enterinfo(event);
+
+//        newGameButtonPushed(event);
     }
     public void startLevel6(ActionEvent event) throws IOException {
         this.level = -1;
@@ -117,11 +149,24 @@ public class Controller{
     }
 
     public void Enterinfo(ActionEvent event) throws IOException {
-        Main.setRoot(FXMLLoader.load(getClass().getResource("PlayerInfo.fxml"))) ;
+        info=new FXMLLoader(getClass().getResource("PlayerInfo.fxml"));
+        Main.setRoot(info.load()) ;
         Scene scene = new Scene(Main.getRoot());
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
+        fxmltext = info.getNamespace();
+        System.out.println(fxmltext);
+
+    }
+
+    public void savename(ActionEvent event) throws IOException {
+        System.out.println(fxmltext);
+        TextField tf = (TextField) fxmltext.get("user1");
+        System.out.println(tf);
+        user = tf.getText();
+        System.out.println(user);
+        newGameButtonPushed(event);
     }
 
     public static void lostGame() throws IOException {
@@ -196,11 +241,23 @@ public class Controller{
 
     }
     public void Load(ActionEvent event) throws IOException {
-        Main.setRoot(FXMLLoader.load(getClass().getResource("Load.fxml"))) ;
+
+        FXMLLoader resume = new FXMLLoader(getClass().getResource("Load.fxml"));
+        Main.setRoot(resume.load()) ;
         Scene scene = new Scene(Main.getRoot());
+        int temp=0;
+        for (int i = 0; i <Math.min(4,saves.size()) ; i++) {
+            Map<String, Object> fxmlNamespace = resume.getNamespace();
+            System.out.println(fxmlNamespace);
+            Button btn = (Button) fxmlNamespace.get("btn"+(i+1));
+            System.out.println(saves);
+            System.out.println(saves.get(saves.size()-i-1));
+            btn.setText(saves.get(saves.size()-i-1));
+        }
         Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
+
 
     }    public void Back(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("MainScreen.fxml"))) ;

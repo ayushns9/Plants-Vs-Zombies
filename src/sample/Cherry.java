@@ -14,12 +14,15 @@ import java.util.concurrent.TimeUnit;
 public class Cherry extends Plants {
     boolean used = false;
     int x,y,health=100;
-    ImageView imageView;
+    transient ImageView imageView;
     Cherry(Pane pane,int x,int y) throws FileNotFoundException{
         super(pane);
         allPlants.add(this);
         this.x = x;
         this.y = y;
+        this.place(x,y,pane);
+    }
+    void place(int x, int y,Pane pane) throws FileNotFoundException {
         this.imageLoc="./src/images/cherry.gif";
         Image image = new Image(new FileInputStream(imageLoc));
         imageView = new ImageView(image);
@@ -27,6 +30,7 @@ public class Cherry extends Plants {
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
         imageView.setFitHeight(40);
+
         imageView.setFitWidth(40);
 
         Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)1000), e -> {

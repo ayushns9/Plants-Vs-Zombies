@@ -21,7 +21,7 @@ public class StrongZombie extends Character {
 
     public int health = 200;
 
-    private ImageView imageView;
+    private transient ImageView imageView;
     public static ArrayList<StrongZombie> allSZombies = new ArrayList<StrongZombie>();
 
     private int x = 600;
@@ -31,17 +31,21 @@ public class StrongZombie extends Character {
     private int possibleLocations[] = {115,52,10,-40,-90};
     private int z;
 
-    Timeline move;
+    transient Timeline move;
 
     StrongZombie(Pane pane) throws FileNotFoundException {
         allSZombies.add(this);
         this.id = Main.idCreater;
         ++Main.idCreater;
+        z = rand.nextInt(5);
+        this.place(z,x,pane);
+
+    }
+    void place(int z,int x,Pane pane) throws FileNotFoundException {
         Image image = new Image(new FileInputStream("./src/images/Conehead_Zombie.gif"));
         imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
-        z = rand.nextInt(5);
         imageView.setTranslateY(possibleLocations[z]);
         this.y = possibleLocations[z];
         imageView.setFitHeight(70);
@@ -71,7 +75,6 @@ public class StrongZombie extends Character {
         }));
         move.setCycleCount((Timeline.INDEFINITE));
         move.play();
-
     }
     static void spawn() throws FileNotFoundException{
         new StrongZombie(Main.getRoot());

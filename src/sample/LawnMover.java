@@ -15,8 +15,8 @@ public class LawnMover extends Character implements Cloneable {
 
     private boolean active = true;
     private int id,x,y;
-    ImageView imageView;
-
+    transient ImageView imageView;
+    transient Timeline move;
     LawnMover(Pane pane, int x, int y) throws FileNotFoundException {
         this.id = Main.idCreater;
         ++Main.idCreater;
@@ -47,7 +47,7 @@ public class LawnMover extends Character implements Cloneable {
 
     void move(){
         this.active = false;
-        Timeline move;
+
         move = new Timeline(new KeyFrame(Duration.millis((double)5), e -> {
             imageView.setTranslateX(x + 5);
             x += 5;

@@ -16,14 +16,17 @@ public class SunFlower extends Plants {
 
     private int health=100;
     private int x,y;
-    private ImageView imageView;
-    Timeline timePlay;
+    private transient ImageView imageView;
+    transient Timeline timePlay;
 
     SunFlower(Pane pane,int x,int y) throws FileNotFoundException{
         super(pane);
         this.x = x;
         this.y = y;
         Plants.allPlants.add(this);
+        this.place(this.x,this.y,pane);
+    }
+    void place(int x,int y,Pane pane) throws FileNotFoundException {
         this.imageLoc="./src/images/Sunflower.gif";
         Image image = new Image(new FileInputStream(imageLoc));
         imageView = new ImageView(image);

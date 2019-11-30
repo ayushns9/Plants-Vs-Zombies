@@ -17,13 +17,16 @@ public class PeaShooter extends Plants {
     private static Map<Pair,PeaShooter> instances = new HashMap<Pair,PeaShooter>();
     private int health=100;
     private int x,y;
-    private ImageView imageView;
-    Timeline move;
+    private transient ImageView imageView;
+    transient Timeline move;
     PeaShooter(Pane pane,int x,int y) throws FileNotFoundException {
         super(pane);
         super.allPlants.add(this);
         this.x = x;
         this.y = y;
+        this.place(x,y,pane);
+    }
+    void place(int x,int y,Pane pane) throws FileNotFoundException {
         this.imageLoc="./src/images/Peashooter.gif";
         Image image = new Image(new FileInputStream(imageLoc));
         imageView = new ImageView(image);

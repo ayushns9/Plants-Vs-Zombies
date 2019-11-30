@@ -12,7 +12,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-public class timer {
+import java.io.Serializable;
+
+public class timer implements Serializable {
 
     private Timeline timePlay;
     private int tmp = 0;

@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 public class GroundNut extends Plants {
 
-    ImageView imageView;
+    transient ImageView imageView;
     int x,y,health = 500;
 
     GroundNut(Pane pane,int x,int y) throws FileNotFoundException{
@@ -17,6 +17,9 @@ public class GroundNut extends Plants {
         Plants.allPlants.add(this);
         this.x = x;
         this.y = y;
+        this.place(x,y,pane);
+    }
+    void place(int x,int y,Pane pane) throws FileNotFoundException {
         this.imageLoc="./src/images/wallnut.gif";
         Image image = new Image(new FileInputStream(imageLoc));
         imageView = new ImageView(image);

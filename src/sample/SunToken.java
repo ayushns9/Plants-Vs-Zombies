@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 public class SunToken extends Character {
     private int x,y, id;
     private boolean collected = false;
-    public ImageView imageView;
+    public transient ImageView imageView;
     SunToken(Pane pane, int x, int y) throws FileNotFoundException {
 
         this.id = Main.idCreater;

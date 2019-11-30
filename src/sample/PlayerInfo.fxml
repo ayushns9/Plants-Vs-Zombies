@@ -13,8 +13,8 @@
             <Image url="@../images/pback.jpg" />
          </image>
       </ImageView>
-      <TextField layoutX="65.0" layoutY="84.0" promptText="Enter Name" />
+      <TextField fx:id="user1" layoutX="65.0" layoutY="84.0" promptText="Enter Name" />
       <Button layoutX="141.0" layoutY="150.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-      <Button layoutX="65.0" layoutY="150.0" mnemonicParsing="false" onAction="#newGameButtonPushed" text="Play" />
+      <Button layoutX="65.0" layoutY="150.0" mnemonicParsing="false" onAction="#savename" text="Play" />
    </children>
 </AnchorPane>

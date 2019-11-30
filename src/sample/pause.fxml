@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="254.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <ImageView fitHeight="294.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
@@ -14,7 +13,7 @@
          </image>
       </ImageView>
       <Button layoutX="261.0" layoutY="63.0" mnemonicParsing="false" onAction="#newGameButtonPushed" text="Resume" />
-      <Button layoutX="269.0" layoutY="116.0" mnemonicParsing="false" text="Save" />
+      <Button layoutX="269.0" layoutY="116.0" mnemonicParsing="false" onAction="#savegame" text="Save" />
       <Button layoutX="255.0" layoutY="168.0" mnemonicParsing="false" onAction="#Back" text="Main Page" />
    </children>
 </AnchorPane>

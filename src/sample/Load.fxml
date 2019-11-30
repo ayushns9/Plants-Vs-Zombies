@@ -14,11 +14,11 @@
             <Image url="@../images/loadd.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="50.0" layoutY="182.0" mnemonicParsing="false" text="User 3" />
-      <Button layoutX="50.0" layoutY="96.0" mnemonicParsing="false" text="User 1" />
-      <Button layoutX="50.0" layoutY="136.0" mnemonicParsing="false" text="User 2" />
+      <Button fx:id="btn3" layoutX="50.0" layoutY="182.0" mnemonicParsing="false" text="User 3" />
+      <Button fx:id="btn1" layoutX="50.0" layoutY="96.0" mnemonicParsing="false" text="User 1" />
+      <Button fx:id="btn2" layoutX="50.0" layoutY="136.0" mnemonicParsing="false" text="User 2" />
       <Button layoutX="50.0" layoutY="268.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-      <Button layoutX="50.0" layoutY="223.0" mnemonicParsing="false" text="User 4" />
+      <Button fx:id="btn4" layoutX="50.0" layoutY="223.0" mnemonicParsing="false" text="User 4" />
       <Text layoutX="13.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Load Games">
          <font>
             <Font size="30.0" />
