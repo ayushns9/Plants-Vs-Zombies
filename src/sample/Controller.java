@@ -64,7 +64,7 @@ public class Controller{
                 ex.printStackTrace();
             }
         }));
-        timePlay.setCycleCount((Timeline.INDEFINITE));
+        timePlay.setCycleCount((2));
         timePlay.play();
     }
 
@@ -81,15 +81,48 @@ public class Controller{
     }
 
     public static void lostGame() throws IOException {
-        timePlay.stop();
 
+        for(Plants p: Plants.allPlants){
+            try {
+                ((SunFlower) p).timePlay.stop();
+                System.out.println("1");
+            } catch (Exception e) {
+                try {
+                    ((PeaShooter) p).move.stop();
+                }
+                catch(Exception ee){
+                    //
+                }
+            }
+        }
         Main.setRoot(FXMLLoader.load(Controller.class.getResource("lost_page.fxml")));
         Scene scene = new Scene(Main.getRoot());
-//        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
 
-//        Main.window.show();
+    }
+    public static void wonGame() throws IOException {
+
+        for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
+        for(Plants p: Plants.allPlants){
+            try {
+                ((SunFlower) p).timePlay.stop();
+                System.out.println("1");
+            } catch (Exception e) {
+                try {
+                    ((PeaShooter) p).move.stop();
+                }
+                catch(Exception ee){
+                    //
+                }
+            }
+        }
+        Main.setRoot(FXMLLoader.load(Controller.class.getResource("win_page.fxml")));
+        Scene scene = new Scene(Main.getRoot());
+        Main.window.setScene(scene);
+        Main.window.show();
     }
     public void level(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("choose.fxml"))) ;

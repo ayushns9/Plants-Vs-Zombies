@@ -14,17 +14,25 @@ import java.util.Map;
 
 public class SunFlower extends Plants {
 
+    private int health=100;
+    private int x,y;
+    private ImageView imageView;
+    Timeline timePlay;
+
     SunFlower(Pane pane,int x,int y) throws FileNotFoundException{
         super(pane);
+        this.x = x;
+        this.y = y;
+        Plants.allPlants.add(this);
         this.imageLoc="./src/images/Sunflower.gif";
         Image image = new Image(new FileInputStream(imageLoc));
-        ImageView imageView = new ImageView(image);
+        imageView = new ImageView(image);
         pane.getChildren().add(imageView);
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
         imageView.setFitHeight(60);
         imageView.setFitWidth(60);
-        Timeline timePlay = new Timeline(new KeyFrame(Duration.millis((double)6000), e -> {
+        timePlay = new Timeline(new KeyFrame(Duration.millis((double)6000), e -> {
             try {
                 new SunToken(Main.getRoot(),x,y);
             } catch (FileNotFoundException ex) {
@@ -34,28 +42,31 @@ public class SunFlower extends Plants {
         timePlay.setCycleCount((Timeline.INDEFINITE));
         timePlay.play();
     }
+
     @Override
     public int getHealth(){
-        return 0;
+        return health;
     }
 
     @Override
     public void damage(int val){
-
+        this.health -= val;
     }
 
     @Override
     public int getX() {
-        return 0;
+        return this.x;
     }
 
     @Override
     public int getY() {
-        return 0;
+        return this.y;
     }
 
     @Override
     public void removePlant() {
-
+        Pane newPane = Main.getRoot();
+        newPane.getChildren().remove(imageView);
+        Main.setRoot(newPane);
     }
 }

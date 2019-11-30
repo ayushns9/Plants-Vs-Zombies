@@ -14,6 +14,7 @@ public class PeaShooter extends Plants {
     private int health=100;
     private int x,y;
     private ImageView imageView;
+    Timeline move;
     PeaShooter(Pane pane,int x,int y) throws FileNotFoundException {
         super(pane);
         super.allPlants.add(this);
@@ -28,7 +29,6 @@ public class PeaShooter extends Plants {
         imageView.setFitHeight(45);
         imageView.setFitWidth(45);
 
-        Timeline move;
         move = new Timeline(new KeyFrame(Duration.millis((double)2500), e -> {
             try {
                 shootpea();

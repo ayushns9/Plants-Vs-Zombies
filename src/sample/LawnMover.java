@@ -45,7 +45,7 @@ public class LawnMover extends Character {
     void move(){
         this.active = false;
         Timeline move;
-        move = new Timeline(new KeyFrame(Duration.millis((double)50), e -> {
+        move = new Timeline(new KeyFrame(Duration.millis((double)5), e -> {
             imageView.setTranslateX(x + 5);
             x += 5;
             for (Zombies z : Zombies.getAllZombies()) {
