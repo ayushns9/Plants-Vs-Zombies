@@ -42,4 +42,9 @@ public class timer {
         S = Integer.toString(tmp);
         timerLabel.setText(S);
     }
+
+    public String getS() {
+        return S;
+    }
+
 }
