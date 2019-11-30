@@ -40,6 +40,10 @@ public class Controller{
         Main.window.setScene(scene);
         Main.window.show();
 
+        lms = new ArrayList<LawnMover>();
+        Plants.allPlants = new ArrayList<Plants>();
+        Zombies.allZombies = new ArrayList<Zombies>();
+
         lms.add(new LawnMover(Main.getRoot(),55,112));
         lms.add(new LawnMover(Main.getRoot(),55,60));
         lms.add(new LawnMover(Main.getRoot(),55,12));
@@ -78,9 +82,7 @@ public class Controller{
 
     public static void lostGame() throws IOException {
         timePlay.stop();
-        for(LawnMover lm: lms){
-            lm.setActive(true);
-        }
+
         Main.setRoot(FXMLLoader.load(Controller.class.getResource("lost_page.fxml")));
         Scene scene = new Scene(Main.getRoot());
 //        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
