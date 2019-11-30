@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class Controller{
     private boolean peaShooter = false,sunFlower = false, groundnut = false,cherry=false;
-    private int peaShooterCost=50,sunFlowerCost=50,groundnutCost=50,cherryCost=50;
+    private int peaShooterCost=100,sunFlowerCost=50,groundnutCost=50,cherryCost=100;
     private int peashooterWait=-10,sunflowerWait=-10,groundnutWait=-10,cherryWait=-10;
     private static ArrayList<LawnMover> lms = new ArrayList<LawnMover>();
     private static ArrayList<String> saves = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Controller{
     static FXMLLoader curr_load = new FXMLLoader(Controller.class.getResource("GameScreen.fxml"));
     private FXMLLoader info = new FXMLLoader(getClass().getResource("PlayerInfo.fxml"));
 //    static FXMLLoader curr_load = new FXMLLoader(Controller.class.getResource("GameScreen.fxml"));
-    static int curr_money=100;
+    static int curr_money=400;
     static Text border;
     private static timer tim;
     private static Timeline timePlay;

@@ -45,7 +45,7 @@
                   <Image url="@../images/sun.png" />
                </image>
             </ImageView>
-            <Text fx:id="money" fontSmoothingType="LCD" layoutX="62.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200">
+            <Text fx:id="money" fontSmoothingType="LCD" layoutX="62.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="400">
                <font>
                   <Font size="9.0" />
                </font>
