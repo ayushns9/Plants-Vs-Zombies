@@ -81,15 +81,48 @@ public class Controller{
     }
 
     public static void lostGame() throws IOException {
-        timePlay.stop();
 
+        for(Plants p: Plants.allPlants){
+            try {
+                ((SunFlower) p).timePlay.stop();
+                System.out.println("1");
+            } catch (Exception e) {
+                try {
+                    ((PeaShooter) p).move.stop();
+                }
+                catch(Exception ee){
+                    //
+                }
+            }
+        }
         Main.setRoot(FXMLLoader.load(Controller.class.getResource("lost_page.fxml")));
         Scene scene = new Scene(Main.getRoot());
-//        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Main.window.setScene(scene);
         Main.window.show();
 
-//        Main.window.show();
+    }
+    public static void wonGame() throws IOException {
+
+        for(Zombies z: Zombies.allZombies){
+            z.move.stop();
+        }
+        for(Plants p: Plants.allPlants){
+            try {
+                ((SunFlower) p).timePlay.stop();
+                System.out.println("1");
+            } catch (Exception e) {
+                try {
+                    ((PeaShooter) p).move.stop();
+                }
+                catch(Exception ee){
+                    //
+                }
+            }
+        }
+        Main.setRoot(FXMLLoader.load(Controller.class.getResource("win_page.fxml")));
+        Scene scene = new Scene(Main.getRoot());
+        Main.window.setScene(scene);
+        Main.window.show();
     }
     public void level(ActionEvent event) throws IOException {
         Main.setRoot(FXMLLoader.load(getClass().getResource("choose.fxml"))) ;
@@ -136,13 +169,11 @@ public class Controller{
         peaShooter = true;
         sunFlower = false;
         groundnut = false;
-        cherry=false;
     }
     public void dragSunFlower(MouseEvent event) {
         sunFlower = true;
         peaShooter =false;
         groundnut = false;
-        cherry=false;
         System.out.println("sunflower clicked");
 
     }
@@ -150,15 +181,7 @@ public class Controller{
         groundnut = true;
         sunFlower = false;
         peaShooter =false;
-        cherry=false;
         System.out.println("Groundnut clicked");
-    }
-    public void dragCherry(MouseEvent event) {
-        groundnut = false;
-        sunFlower = false;
-        peaShooter =false;
-        cherry=true;
-        System.out.println("cherry clicked");
     }
     public void drop(MouseEvent event) throws FileNotFoundException {
         System.out.println("Drop");

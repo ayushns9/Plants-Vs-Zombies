@@ -31,6 +31,8 @@ public class Zombies extends Character {
     private int possibleLocations[] = {115,52,10,-40,-90};
     private int z;
 
+    Timeline move;
+
     Zombies(Pane pane) throws FileNotFoundException {
         allZombies.add(this);
         this.id = Main.idCreater;
@@ -46,7 +48,7 @@ public class Zombies extends Character {
         imageView.setFitWidth(70);
         imageView.setPreserveRatio(true);
 
-        Timeline move;
+
         move = new Timeline(new KeyFrame(Duration.millis((double)15), e -> {
             try {
                 onestep();
@@ -55,6 +57,13 @@ public class Zombies extends Character {
             } catch(GameLostException g){
                 try {
                     Controller.lostGame();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            catch(GameWonException gg){
+                try {
+                    Controller.wonGame();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -73,14 +82,23 @@ public class Zombies extends Character {
         return health;
     }
 
-    public void onestep() throws InterruptedException, GameLostException {
-//        System.out.println(x);
+    public void onestep() throws InterruptedException, GameLostException, GameWonException {
         imageView.setTranslateX(x - 2);
         x -= 2;
         if (this.health <= 0) {
             Pane newPane = Main.getRoot();
             newPane.getChildren().remove(imageView);
             Main.setRoot(newPane);
+//            allZombies.remove(this);
+            boolean allDead = true;
+            for(Zombies zo: allZombies){
+                if(zo.health>0)
+                    allDead = false;
+            }
+            if(allDead){
+
+                throw new GameWonException("You won");
+            }
         }
         if (this.x <= 132 && Controller.getLms().get(this.z).getActive() && this.health>0) {
             Pane newPane = Main.getRoot();
