@@ -92,9 +92,9 @@ public class Controller{
                 Random rand = new Random();
                 int xx = rand.nextInt(2);
                 if(xx==0)
-                    StrongZombie.spawn();
+                    StrongZombie.spawn(rand.nextInt(5), 600);
                 else
-                    Zombies.spawn();
+                    Zombies.spawn(rand.nextInt(5),600);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -312,6 +312,8 @@ public class Controller{
                 lms = d.getLms();
                 Plants.allPlants = d.getAllPlants();
                 Zombies.allZombies = d.getAllZombies();
+                StrongZombie.allSZombies=d.getConeZom();
+
                 for (int j = 0; j <lms.size(); j++) {
                     try {
                         if(lms.get(j).getActive())
@@ -352,7 +354,23 @@ public class Controller{
                 }
                 Map<String, Object> fxmNamespace = curr_load.getNamespace();
                 border = (Text) fxmNamespace.get("money");
+                border.setText(String.valueOf(d.getMoney()));
                 Controller.curr_money = Integer.parseInt(border.getText());
+
+                for(Zombies z: Zombies.allZombies){
+                    try {
+                        z.place(z.getZ(),z.getX(),Main.getRoot());
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                for(StrongZombie z: StrongZombie.getAllZombies()){
+                    try {
+                        z.place(z.getZ(),z.getX(),Main.getRoot());
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
+                }
 
                 timePlay = new Timeline(new KeyFrame(Duration.millis((double)3000), q -> {
                     try {
@@ -361,9 +379,9 @@ public class Controller{
                         Random rand = new Random();
                         int xx = rand.nextInt(2);
                         if(xx==0)
-                            StrongZombie.spawn();
+                            StrongZombie.spawn(rand.nextInt(5),600);
                         else
-                            Zombies.spawn();
+                            Zombies.spawn(rand.nextInt(5),600);
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
                     }

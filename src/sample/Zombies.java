@@ -39,13 +39,15 @@ public class Zombies extends Character implements Cloneable{
     transient Timeline move;
 
 
-    Zombies(Pane pane) throws FileNotFoundException {
+    Zombies(int z,int x,Pane pane) throws FileNotFoundException {
         allZombies.add(this);
         this.id = Main.idCreater;
         ++Main.idCreater;
-        z = rand.nextInt(5);
+        this.z=z;
         place(z,x,pane);
     }
+
+
     void place(int z,int x,Pane pane) throws FileNotFoundException {
         Image image = new Image(new FileInputStream("./src/images/zom.gif"));
         imageView = new ImageView(image);
@@ -83,13 +85,16 @@ public class Zombies extends Character implements Cloneable{
 
     }
 
-    static void spawn() throws FileNotFoundException{
-        new Zombies(Main.getRoot());
+    static void spawn(int z,int x) throws FileNotFoundException{
+        new Zombies(z,x,Main.getRoot());
     }
-
 
     public int getHealth() {
         return health;
+    }
+
+    public int getZ() {
+        return z;
     }
 
     public void update(){

@@ -33,11 +33,12 @@ public class StrongZombie extends Character {
 
     transient Timeline move;
 
-    StrongZombie(Pane pane) throws FileNotFoundException {
+    StrongZombie(int z, int x,Pane pane) throws FileNotFoundException {
         allSZombies.add(this);
         this.id = Main.idCreater;
         ++Main.idCreater;
-        z = rand.nextInt(5);
+//        z = rand.nextInt(5);
+        this.z = z;
         this.place(z,x,pane);
 
     }
@@ -76,10 +77,14 @@ public class StrongZombie extends Character {
         move.setCycleCount((Timeline.INDEFINITE));
         move.play();
     }
-    static void spawn() throws FileNotFoundException{
-        new StrongZombie(Main.getRoot());
+    static void spawn(int z,int x) throws FileNotFoundException{
+        new StrongZombie(z,x,Main.getRoot());
     }
 
+
+    public int getZ() {
+        return z;
+    }
 
     public int getHealth() {
         return health;

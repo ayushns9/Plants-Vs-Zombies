@@ -8,6 +8,17 @@ public class data implements Serializable {
     private ArrayList lms;
     private ArrayList allPlants=Plants.allPlants;
     private ArrayList allZombies=Zombies.allZombies;
+    private ArrayList coneZom=StrongZombie.getAllZombies();
+    private int money = Controller.curr_money;
+
+    public ArrayList getConeZom() {
+        return coneZom;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
     private int level;
 
     public ArrayList getAllPlants() {

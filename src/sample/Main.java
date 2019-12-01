@@ -19,7 +19,6 @@ public class Main extends Application {
     public static void setRoot(Pane root) {
         Main.root = root;
     }
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));

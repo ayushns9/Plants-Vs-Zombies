@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 public class factory {
 
     public static Zombies getins(Zombies o) throws FileNotFoundException {
-        return new Zombies(new Pane());
+        return new Zombies(0,0,new Pane());
     }
 
     public static Pea getins(Pea o) throws FileNotFoundException {
