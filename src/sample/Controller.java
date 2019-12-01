@@ -190,6 +190,114 @@ public class Controller{
         System.out.println(user);
         newGameButtonPushed(event);
     }
+    public void rest(ActionEvent event) throws IOException,ClassNotFoundException{
+        save.saved(new data(lms,level),user);
+        data d = save.unsave(user);
+        FXMLLoader curr_loa = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
+
+        Main.setRoot(curr_loa.load());
+
+        Scene scene1 = new Scene(Main.getRoot());
+        System.out.println(Main.window);
+        Main.window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Main.window.setScene(scene1);
+        Main.window.show();
+
+        lms = d.getLms();
+        Plants.allPlants = d.getAllPlants();
+        Zombies.allZombies = d.getAllZombies();
+        StrongZombie.allSZombies=d.getConeZom();
+
+        for (int j = 0; j <lms.size(); j++) {
+            try {
+                if(lms.get(j).getActive())
+                    new LawnMover(Main.getRoot(),lms.get(j).getX(),lms.get(j).getY());
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+//
+        tim = new timer();
+        for(Plants p: Plants.allPlants){
+            try {
+                p=(PeaShooter) p;
+                ((PeaShooter) p).place(p.getX(),p.getY(),Main.getRoot());
+            } catch (Exception ex) {
+
+            }
+
+            try {
+                p=(SunFlower) p;
+                ((SunFlower) p).place(p.getX(),p.getY(),Main.getRoot());
+            } catch (Exception ex) {
+//                        ex.printStackTrace();
+            }
+            try {
+                p=(GroundNut) p;
+                ((GroundNut) p).place(p.getX(),p.getY(),Main.getRoot());
+            } catch (Exception ex) {
+//                        ex.printStackTrace();
+            }
+            try {
+                p=(Cherry) p;
+                ((Cherry) p).place(p.getX(),p.getY(),Main.getRoot());
+            } catch (Exception ex) {
+//                        ex.printStackTrace();
+            }
+
+        }
+        Map<String, Object> fxmNamespace = curr_load.getNamespace();
+        border = (Text) fxmNamespace.get("money");
+        border.setText(String.valueOf(d.getMoney()));
+        Controller.curr_money = Integer.parseInt(border.getText());
+
+        for(Zombies z: Zombies.allZombies){
+            try {
+                z.place(z.getZ(),z.getX(),Main.getRoot());
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+        for(StrongZombie z: StrongZombie.getAllZombies()){
+            try {
+                z.place(z.getZ(),z.getX(),Main.getRoot());
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        timePlay = new Timeline(new KeyFrame(Duration.millis((double)3000), q -> {
+            try {
+                border = (Text) fxmNamespace.get("money");
+                Controller.curr_money = Integer.parseInt(border.getText());
+                Random rand = new Random();
+                int xx = rand.nextInt(2);
+                if(xx==0)
+                    StrongZombie.spawn(rand.nextInt(5),600);
+                else
+                    Zombies.spawn(rand.nextInt(5),600);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }));
+        timePlay.setCycleCount((2*level));
+        timePlay.play();
+        Random rand = new Random();
+        int possibleLocations[] = {140,200,500,300,400,250,350,450,215,315,180};
+        sun_falling = new Timeline(new KeyFrame(Duration.millis((double)10000), t -> {
+            try {
+                (new SunToken(Main.getRoot(),possibleLocations[rand.nextInt(possibleLocations.length)],-140)).onestep();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }));
+        sun_falling.setCycleCount((Timeline.INDEFINITE));
+        sun_falling.play();
+        System.out.println(user);
+
+
+
+    }
 
     public static void lostGame() throws IOException {
 
