@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -13,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -107,8 +109,13 @@ public class StrongZombie extends Character {
                 if(zo.health<=0)
                     allDead++;
             }
+            double b = allDead;
+            b/=2*Controller.getLevel();
+            Map<String, Object> fxmlNamespace = Controller.curr_load.getNamespace();
+            ProgressBar p = (ProgressBar) fxmlNamespace.get("bar");
+            p.setProgress(b);
 
-            if(allDead==Controller.getLevel()){
+            if(allDead==2*Controller.getLevel()){
                 throw new GameWonException("You won");
             }
         }
@@ -117,7 +124,7 @@ public class StrongZombie extends Character {
             newPane.getChildren().remove(imageView);
             Main.setRoot(newPane);
             Controller.getLms().get(this.z).move();
-            this.health -= 100;
+            this.health -= 1000;
         } else if (this.x <= 132 && this.health>0) {
             this.health=0;
             throw new GameLostException("You lost");

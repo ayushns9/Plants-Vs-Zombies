@@ -138,7 +138,7 @@ public class Zombies extends Character implements Cloneable{
             newPane.getChildren().remove(imageView);
             Main.setRoot(newPane);
             Controller.getLms().get(this.z).move();
-            this.health -= 100;
+            this.health -= 1000;
         } else if (this.x <= 132 && this.health>0) {
             this.health=0;
             throw new GameLostException("You lost");
